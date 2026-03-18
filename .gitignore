@@ -21,7 +21,6 @@ Release/
 *~
 
 # Output files
-*.csv
 
 # Temporary files
 *.tmp
