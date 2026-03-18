@@ -1,0 +1,28 @@
+# Compiled files
+*.o
+*.exe
+*.out
+*.app
+*.obj
+*.dll
+
+# Build directories
+build/
+bin/
+cmake-build-*/
+Debug/
+Release/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Output files
+*.csv
+
+# Temporary files
+*.tmp
+*.log
