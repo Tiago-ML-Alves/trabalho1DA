@@ -1,9 +1,6 @@
 #ifndef PROJECT1_TYPES_H
 #define PROJECT1_TYPES_H
 
-#include <iostream>
-#include <map>
-
 enum class VertexType;
 
 struct Paper

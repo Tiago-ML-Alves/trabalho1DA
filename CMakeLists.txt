@@ -3,4 +3,7 @@ project(project1)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(main Project1SampleDatasets/src/main.cpp)
+add_executable(main Project1SampleDatasets/src/main.cpp
+        Project1SampleDatasets/src/Parser.h)
+add_executable(parser
+        Project1SampleDatasets/src/Parser.cpp)
