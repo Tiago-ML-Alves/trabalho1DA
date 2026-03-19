@@ -3,7 +3,7 @@
 
 enum class VertexType;
 
-struct Paper
+struct Submission
 {
     int id;
     std::string title;
@@ -18,8 +18,8 @@ struct Reviewer
     int id;
     std::string name;
     std::string email;
-    int primaryTopic;
-    int secondaryTopic;
+    int primaryExpertise;
+    int secondaryExpertise;
 };
 
 struct Parameters
@@ -55,6 +55,14 @@ enum class VertexType
     PAPER,
     REVIEWER,
     SINK
+};
+enum class Section
+{
+    NONE,
+    SUBMISSIONS,
+    REVIEWERS,
+    PARAMETERS,
+    CONTROL
 };
 
 
