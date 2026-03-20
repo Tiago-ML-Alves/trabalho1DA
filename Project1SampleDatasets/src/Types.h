@@ -52,7 +52,7 @@ struct NodeInfo
 enum class VertexType
 {
     SOURCE,
-    PAPER,
+    SUBMISSION,
     REVIEWER,
     SINK
 };

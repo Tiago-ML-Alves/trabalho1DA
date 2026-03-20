@@ -7,3 +7,5 @@ add_executable(main Project1SampleDatasets/src/main.cpp
         Project1SampleDatasets/src/Parser.h)
 add_executable(parser
         Project1SampleDatasets/src/Parser.cpp)
+add_executable(build_flow
+        Project1SampleDatasets/src/FlowNetwork.cpp)
