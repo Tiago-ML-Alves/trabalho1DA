@@ -26,7 +26,7 @@ struct Parameters
 {
     int maxReviewsPerReviewer;
     int minReviewsPerSubmission;
-    int primaryReviewExpertise;
+    int primaryReviewerExpertise;
     int secondaryReviewerExpertise;
     int primarySubmissionDomain;
     int secondarySubmissionDomain;
