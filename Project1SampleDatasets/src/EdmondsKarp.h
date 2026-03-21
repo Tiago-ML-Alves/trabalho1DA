@@ -90,20 +90,19 @@ void augmentFlowAlongPath(Vertex<T> *source, Vertex<T> *sink, double f) {
         }
     }
 }
-
+template <class T>
+void resetFlow(Graph<T>* g)
+{
+    for (Vertex<T>* v : g->getVertexSet())
+    {
+        for (Edge<T>* e : v->getAdj()) e->setFlow(0);
+    }
+}
 // Main function implementing the Edmonds-Karp algorithm
 template <class T>
 void edmondsKarp(Graph<T> *g, NodeInfo source, NodeInfo target) {
     Vertex<T>* s = g->findVertex(source);
     Vertex<T>* t = g->findVertex(target);
-
-    for (Vertex<T>* v : g->getVertexSet())
-    {
-        for (Edge<T>* e : v->getAdj())
-        {
-            e->setFlow(0);
-        }
-    }
 
    while (findAugmentingPath(g, s, t))
    {
