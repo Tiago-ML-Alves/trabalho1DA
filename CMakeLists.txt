@@ -11,3 +11,5 @@ add_executable(build_flow
         Project1SampleDatasets/src/FlowNetwork.cpp)
 add_executable(scheduler
         Project1SampleDatasets/src/Scheduler.cpp)
+add_executable(output
+        Project1SampleDatasets/src/Output.cpp)

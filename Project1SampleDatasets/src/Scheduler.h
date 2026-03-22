@@ -11,6 +11,7 @@ public:
     Scheduler (FlowNetwork& flowNetwork, const std::map<int, Submission>& submissions, const std::map<int, Reviewer>& reviewers);
     void runRiskAnalysis (int k);
     std::vector<Assignment> getAssignments() const;
+    std::set<int> getRiskyReviewers() const;
     std::vector<FailedAssignment> getMissingReviews() const;
     bool wasSuccessful() const;
 private:
