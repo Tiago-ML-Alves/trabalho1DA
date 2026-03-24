@@ -1,8 +1,21 @@
 #ifndef PROJECT1_TYPES_H
 #define PROJECT1_TYPES_H
+#include <string>
 
 enum class VertexType;
 
+struct Assignment
+{
+    int submissionID;
+    int reviewerID;
+    int matchedTopic;
+};
+struct FailedAssignment
+{
+    int id;
+    int primaryDomain;
+    int missingReviews;
+};
 struct Submission
 {
     int id;
@@ -26,7 +39,7 @@ struct Parameters
 {
     int maxReviewsPerReviewer;
     int minReviewsPerSubmission;
-    int primaryReviewExpertise;
+    int primaryReviewerExpertise;
     int secondaryReviewerExpertise;
     int primarySubmissionDomain;
     int secondarySubmissionDomain;
@@ -39,6 +52,13 @@ struct Control
     std::string outputFileName = "output.csv";
 };
 
+enum class VertexType
+{
+    SOURCE,
+    SUBMISSION,
+    REVIEWER,
+    SINK
+};
 struct NodeInfo
 {
     int id;
@@ -49,13 +69,7 @@ struct NodeInfo
         return id == other.id && type == other.type;
     }
 };
-enum class VertexType
-{
-    SOURCE,
-    PAPER,
-    REVIEWER,
-    SINK
-};
+
 enum class Section
 {
     NONE,
