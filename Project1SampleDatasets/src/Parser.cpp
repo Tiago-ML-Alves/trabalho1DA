@@ -2,6 +2,7 @@
 
 #include "Parser.h"
 #include <fstream>
+#include <functional>
 #include <sstream>
 #include <iostream>
 #include <vector>
@@ -132,12 +133,51 @@ void Parser::parseReviewers(const std::string& line, std::map<int, Reviewer>& re
         reviewers[rev.id] = rev;
 }
 
-/*void Parser::parseParameters(const std::string& line, Parameters& parameters)
+void Parser::parseParameters(const std::string& line, Parameters& parameters)
 {
     std::istringstream fullLine(line);
     std::string field;
-    std::vector<std::pair<std::string, int>> fields;
+    std::vector<std::string> fields;
     while (std::getline(fullLine, field, ','))
     {
+        fields.push_back(trim(field));
     }
-}*/
+    std::string name = fields[0];
+    int value = std::stoi(fields[1]);
+
+    std::map<std::string, std::function<void(int)>> paramMap = {
+        {"MinReviewsPerSubmission",  [&](int v){ parameters.minReviewsPerSubmission = v; }},
+        {"MaxReviewsPerReviewer",    [&](int v){ parameters.maxReviewsPerReviewer = v; }},
+        {"PrimaryReviewerExpertise", [&](int v){ parameters.primaryReviewerExpertise = v; }},
+        {"SecondaryReviewerExpertise",[&](int v){ parameters.secondaryReviewerExpertise = v; }},
+        {"PrimarySubmissionDomain",  [&](int v){ parameters.primarySubmissionDomain = v; }},
+        {"SecondarySubmissionDomain",[&](int v){ parameters.secondarySubmissionDomain = v; }}
+    };
+
+    if (paramMap.contains(name)) paramMap[name](value);
+    else std::cerr << "invalid line: unrecognized parameter" << std::endl;
+}
+
+void Parser::parseControl(const std::string& line, Control& control)
+{
+    std::istringstream fullLine(line);
+    std::string field;
+    std::vector<std::string> fields;
+    while (std::getline(fullLine, field, ','))
+    {
+        fields.push_back(trim(field));
+    }
+    std::string name = fields[0];
+    std::string value = fields[1];
+
+    std::map<std::string, std::function<void(std::string)>> controlMap = {
+        {"GenerateAssignments",[&](std::string c){ control.generateAssignments = std::stoi(c); }},
+        {"RiskAnalysis",  [&](std::string c){ control.riskAnalysis = std::stoi(c); }},
+        {"OutputFileName",[&](std::string c){control.outputFileName = c; }}
+    };
+
+    if (controlMap.contains(name)) controlMap[name](value);
+    else std::cerr << "invalid line: unrecognized parameter" << std::endl;
+}
+
+
