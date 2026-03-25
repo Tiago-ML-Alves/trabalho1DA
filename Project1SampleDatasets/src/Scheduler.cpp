@@ -104,6 +104,11 @@ std::vector<Assignment> Scheduler::getAssignments() const
 	return assignments_;
 }
 
+std::set<int> Scheduler::getRiskyReviewers() const
+{
+	return riskyReviewers_;
+}
+
 bool Scheduler::wasSuccessful() const
 {
 	return successful_;
