@@ -1,535 +1,353 @@
+/**
+ * @file main.cpp
+ * @brief Entry point for the Review Assignment Tool.
+ *
+ * Two modes:
+ *  - Interactive: text menu.
+ *  - Batch:       ./review_tool -b input.csv output.csv
+ *
+ * All computation lives in Parser, FlowNetwork, Scheduler, Output.
+ * This file only wires them together.
+ */
+
 #include <iostream>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <sstream>
 #include <iomanip>
-#include <algorithm>
 #include <limits>
-#include <stdexcept>
-#include <unordered_set>
+#include <memory>
+#include <map>
+#include <string>
 
-using namespace std;
+#include "Types.h"
+#include "Parser.h"
+#include "FlowNetwork.h"
+#include "Scheduler.h"
+#include "Output.h"
 
-// ── Data structures ──────────────────────────────────────────────────────────
+// ─── helpers ─────────────────────────────────────────────────────────────────
 
-struct Submission {
-    int id;
-    string title;
-    string authors;
-    string email;
-    int primaryTopic;
-    int secondaryTopic;   // 0 if absent
-};
-
-struct Reviewer {
-    int id;
-    string name;
-    string email;
-    int primaryExpertise;
-    int secondaryExpertise;  // 0 if absent
-};
-
-struct Parameters {
-    int minReviewsPerSubmission;
-    int maxReviewsPerReviewer;
-    int primaryReviewerExpertise;
-    int secondaryReviewerExpertise;
-    int primarySubmissionDomain;
-    int secondarySubmissionDomain;
-};
-
-struct Control {
-    int    generateAssignments;
-    int    riskAnalysis;
-    string outputFileName;
-};
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-// Safely truncate a string for display, appending "..." only when actually cut.
-static string truncate(const string& s, size_t maxLen) {
-    if (s.size() <= maxLen) return s;
-    if (maxLen <= 3)        return s.substr(0, maxLen);
-    return s.substr(0, maxLen - 3) + "...";
+/**
+ * @brief Truncate a string to @p max chars, appending "..." if cut.
+ * @complexity O(n)
+ */
+static std::string truncate(const std::string& s, std::size_t max)
+{
+    if (s.size() <= max) return s;
+    if (max <= 3)        return s.substr(0, max);
+    return s.substr(0, max - 3) + "...";
 }
 
-// Try to parse an int; throw a descriptive exception on failure.
-static int safeStoi(const string& s, const string& context) {
-    if (s.empty())
-        throw invalid_argument("Empty value for field: " + context);
-    try {
-        size_t pos;
-        int v = stoi(s, &pos);
-        if (pos != s.size())
-            throw invalid_argument("Non-numeric characters in field: " + context);
-        return v;
-    } catch (const invalid_argument&) {
-        throw invalid_argument("Invalid integer for field: " + context + " (got \"" + s + "\")");
-    } catch (const out_of_range&) {
-        throw out_of_range("Integer out of range for field: " + context + " (got \"" + s + "\")");
+/** @brief Wait for the user to press Enter. */
+static void pause()
+{
+    std::cout << "\n  Press Enter to continue...";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.get();
+}
+
+// ─── display ─────────────────────────────────────────────────────────────────
+
+/**
+ * @brief Print loaded submissions, reviewers, parameters and control to stdout.
+ * @complexity O(S + R)
+ */
+static void displayData(const std::map<int, Submission>& subs,
+                        const std::map<int, Reviewer>&   revs,
+                        const Parameters& p,
+                        const Control&    c)
+{
+    std::cout << "\n  SUBMISSIONS (" << subs.size() << ")\n"
+              << "" << std::string(54, '-') << "\n";
+    for (const auto& kv : subs)
+    {
+        const Submission& s = kv.second;
+        std::cout << "" << std::setw(4)  << std::right << s.id
+                  << "" << std::setw(30) << std::left  << truncate(s.title, 30)
+                  << "topic " << s.primaryTopic;
+        if (s.secondaryTopic != -1) std::cout << "/" << s.secondaryTopic;
+        std::cout << "\n";
+    }
+
+    std::cout << "\n  REVIEWERS (" << revs.size() << ")\n"
+              << "" << std::string(44, '-') << "\n";
+    for (const auto& kv : revs)
+    {
+        const Reviewer& r = kv.second;
+        std::cout << "" << std::setw(4)  << std::right << r.id
+                  << "" << std::setw(22) << std::left  << truncate(r.name, 22)
+                  << "exp " << r.primaryExpertise;
+        if (r.secondaryExpertise != -1) std::cout << "/" << r.secondaryExpertise;
+        std::cout << "\n";
+    }
+
+    std::cout << "\n  PARAMETERS\n"
+              << "  minReviewsPerSubmission  " << p.minReviewsPerSubmission  << "\n"
+              << "  maxReviewsPerReviewer    " << p.maxReviewsPerReviewer    << "\n"
+              << "CONTROL\n"
+              << "  generateAssignments      " << c.generateAssignments << "\n"
+              << "  riskAnalysis             " << c.riskAnalysis        << "\n"
+              << "  outputFileName           " << c.outputFileName      << "\n";
+}
+
+/**
+ * @brief Print assignment results to stdout.
+ * @complexity O(A)
+ */
+static void displayResults(const Scheduler& sched)
+{
+    if (sched.wasSuccessful())
+    {
+        std::vector<Assignment> asgn = sched.getAssignments();
+        std::cout << "\n  " << asgn.size() << " assignment(s) made.\n"
+                  << "" << std::setw(12) << "Submission"
+                  << "" << std::setw(10) << "Reviewer"
+                  << "Topic\n"
+                  << "" << std::string(36, '-') << "\n";
+        for (std::size_t i = 0; i < asgn.size(); ++i)
+            std::cout << "" << std::setw(12) << asgn[i].submissionID
+                      << "" << std::setw(10) << asgn[i].reviewerID
+                      << "" << asgn[i].matchedTopic << "\n";
+    }
+    else
+    {
+        std::cout << "Assignment incomplete:\n";
+        std::vector<FailedAssignment> missing = sched.getMissingReviews();
+        for (std::size_t i = 0; i < missing.size(); ++i)
+            std::cout << "Submission " << missing[i].id
+                      << " missing "   << missing[i].missingReviews
+                      << " review(s) (domain " << missing[i].primaryDomain << ")\n";
     }
 }
 
-// ── Main class ────────────────────────────────────────────────────────────────
+// ─── batch mode ───────────────────────────────────────────────────────────────
 
-class ReviewAssignmentTool {
-private:
-    vector<Submission> submissions;
-    vector<Reviewer>   reviewers;
-    Parameters         params;
-    Control            control;
-    string             currentInputFile;
-    bool               dataLoaded;
+/**
+ * @brief Parse → assign → risk analysis → write. No user interaction.
+ * @return true on success.
+ * @complexity O(V·E²)
+ */
+static bool runBatch(const std::string& inputFile, const std::string& outputFile)
+{
+    std::cerr << "[batch] " << inputFile << " -> " << outputFile << "\n";
 
-    // ── UI helpers ────────────────────────────────────────────────────────────
+    std::map<int, Submission> subs;
+    std::map<int, Reviewer>   revs;
+    Parameters p = {};
+    Control    c = {};
+    c.outputFileName = outputFile;
 
-    void printHeader() const {
-        cout << "\n" << string(60, '=') << "\n"
-             << "     SCIENTIFIC CONFERENCE REVIEW ASSIGNMENT TOOL\n"
-             << string(60, '=') << "\n";
-    }
+    Parser::parse(inputFile, subs, revs, p, c);
 
-    void printMenu() const {
-        cout << "\nMAIN MENU:\n" << string(40, '-') << "\n"
-             << "1. Load input file\n"
-             << "2. Display loaded data\n"
-             << "3. Run review assignment\n"
-             << "4. Run risk analysis\n"
-             << "5. Configure parameters\n"
-             << "6. Save output\n"
-             << "7. Run batch mode\n"
-             << "0. Exit\n"
-             << string(40, '-') << "\n"
-             << "Option: ";
-    }
-
-    void waitForKeyPress() {
-        cout << "\nPress Enter to continue...";
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin.get();
-    }
-
-    // ── Parsing ───────────────────────────────────────────────────────────────
-
-/*
-    bool parseSubmissionLine(const string& line) {
-        stringstream ss(line);
-        string field;
-        Submission sub;
-
-        if (!getline(ss, field, ','))
-            throw invalid_argument("Missing submission ID");
-        sub.id = safeStoi(field, "submission ID");
-
-        if (!getline(ss, field, ','))
-            throw invalid_argument("Missing submission title");
-        sub.title = field;
-
-        if (!getline(ss, field, ','))
-            throw invalid_argument("Missing submission authors");
-        sub.authors = field;
-
-        if (!getline(ss, field, ','))
-            throw invalid_argument("Missing submission email");
-        sub.email = field;
-
-        if (!getline(ss, field, ','))
-            throw invalid_argument("Missing submission primary topic");
-        sub.primaryTopic = safeStoi(field, "submission primary topic");
-
-        // Secondary topic is optional
-        sub.secondaryTopic = 0;
-        if (getline(ss, field, ',') && !field.empty())
-            sub.secondaryTopic = safeStoi(field, "submission secondary topic");
-
-        submissions.push_back(sub);
-        return true;
-    }
-
-    bool parseReviewerLine(const string& line) {
-        stringstream ss(line);
-        string field;
-        Reviewer rev;
-
-        if (!getline(ss, field, ','))
-            throw invalid_argument("Missing reviewer ID");
-        rev.id = safeStoi(field, "reviewer ID");
-
-        if (!getline(ss, field, ','))
-            throw invalid_argument("Missing reviewer name");
-        rev.name = field;
-
-        if (!getline(ss, field, ','))
-            throw invalid_argument("Missing reviewer email");
-        rev.email = field;
-
-        if (!getline(ss, field, ','))
-            throw invalid_argument("Missing reviewer primary expertise");
-        rev.primaryExpertise = safeStoi(field, "reviewer primary expertise");
-
-        // Secondary expertise is optional
-        rev.secondaryExpertise = 0;
-        if (getline(ss, field, ',') && !field.empty())
-            rev.secondaryExpertise = safeStoi(field, "reviewer secondary expertise");
-
-        reviewers.push_back(rev);
-        return true;
-    }
-
-
-
-    bool parseParametersLine(const string& line) {
-        stringstream ss(line);
-        string param, value;
-
-        if (!getline(ss, param, ',') || !getline(ss, value, ','))
-            throw invalid_argument("Malformed parameter line: \"" + line + "\"");
-
-        if      (param == "MinReviewsPerSubmission")   params.minReviewsPerSubmission   = safeStoi(value, param);
-        else if (param == "MaxReviewsPerReviewer")     params.maxReviewsPerReviewer     = safeStoi(value, param);
-        else if (param == "PrimaryReviewerExpertise")  params.primaryReviewerExpertise  = safeStoi(value, param);
-        else if (param == "SecondaryReviewerExpertise")params.secondaryReviewerExpertise= safeStoi(value, param);
-        else if (param == "PrimarySubmissionDomain")   params.primarySubmissionDomain   = safeStoi(value, param);
-        else if (param == "SecondarySubmissionDomain") params.secondarySubmissionDomain = safeStoi(value, param);
-        else
-            cerr << "WARNING: Unknown parameter \"" << param << "\" – ignored.\n";
-
-        return true;
-    }
-
-    bool parseControlLine(const string& line) {
-        stringstream ss(line);
-        string param, value;
-
-        if (!getline(ss, param, ',') || !getline(ss, value, ','))
-            throw invalid_argument("Malformed control line: \"" + line + "\"");
-
-        if (param == "GenerateAssignments") {
-            control.generateAssignments = safeStoi(value, param);
-        } else if (param == "RiskAnalysis") {
-            control.riskAnalysis = safeStoi(value, param);
-        } else if (param == "OutputFileName") {
-            value.erase(remove(value.begin(), value.end(), '"'), value.end());
-            control.outputFileName = value;
-        } else {
-            cerr << "WARNING: Unknown control key \"" << param << "\" – ignored.\n";
-        }
-
-        return true;
-    }
-*/
-    // ── Validation ────────────────────────────────────────────────────────────
-
-    bool validateData() const {
-        bool valid = true;
-
-        // Duplicate submission IDs
-        unordered_set<int> subIds;
-        for (const auto& s : submissions) {
-            if (s.id <= 0) {
-                cerr << "ERROR: Submission ID must be positive (got " << s.id << ")\n";
-                valid = false;
-            }
-            if (!subIds.insert(s.id).second) {
-                cerr << "ERROR: Duplicate submission ID: " << s.id << "\n";
-                valid = false;
-            }
-        }
-
-        // Duplicate reviewer IDs
-        unordered_set<int> revIds;
-        for (const auto& r : reviewers) {
-            if (r.id <= 0) {
-                cerr << "ERROR: Reviewer ID must be positive (got " << r.id << ")\n";
-                valid = false;
-            }
-            if (!revIds.insert(r.id).second) {
-                cerr << "ERROR: Duplicate reviewer ID: " << r.id << "\n";
-                valid = false;
-            }
-        }
-
-        if (params.minReviewsPerSubmission <= 0) {
-            cerr << "ERROR: MinReviewsPerSubmission must be positive\n";
-            valid = false;
-        }
-        if (params.maxReviewsPerReviewer <= 0) {
-            cerr << "ERROR: MaxReviewsPerReviewer must be positive\n";
-            valid = false;
-        }
-
-        return valid;
-    }
-
-public:
-    // ── Constructor ───────────────────────────────────────────────────────────
-
-    ReviewAssignmentTool() : dataLoaded(false) {
-        params.minReviewsPerSubmission  = 3;
-        params.maxReviewsPerReviewer    = 5;
-        params.primaryReviewerExpertise = 1;
-        params.secondaryReviewerExpertise = 0;
-        params.primarySubmissionDomain  = 1;
-        params.secondarySubmissionDomain = 1;
-
-        control.generateAssignments = 0;
-        control.riskAnalysis        = 0;
-        control.outputFileName      = "output.csv";
-    }
-
-    // ── File loading ──────────────────────────────────────────────────────────
-
-    bool readInputFile(const string& filename) {
-        // Clear any previously loaded data before reading a new file
-        submissions.clear();
-        reviewers.clear();
-
-        ifstream file(filename);
-        if (!file.is_open()) {
-            cerr << "ERROR: Could not open file: " << filename << "\n";
-            return false;
-        }
-
-        cout << "Loading file: " << filename << " ...\n";
-
-        string line, section;
-        int  lineNum   = 0;
-        bool hasErrors = false;
-
-        while (getline(file, line)) {
-            ++lineNum;
-            if (line.empty()) continue;
-
-            if (line[0] == '#') {
-                section = line;
-                continue;
-            }
-
-            try {
-                if      (section.find("#Submissions") != string::npos) { if (!parseSubmissionLine(line))  hasErrors = true; }
-                else if (section.find("#Reviewers")   != string::npos) { if (!parseReviewerLine(line))    hasErrors = true; }
-                else if (section.find("#Parameters")  != string::npos) { if (!parseParametersLine(line))  hasErrors = true; }
-                else if (section.find("#Control")     != string::npos) { if (!parseControlLine(line))     hasErrors = true; }
-            } catch (const exception& e) {
-                cerr << "ERROR at line " << lineNum << ": " << e.what() << "\n";
-                hasErrors = true;
-            }
-        }
-
-        file.close();
-
-        if (!hasErrors && validateData()) {
-            dataLoaded       = true;
-            currentInputFile = filename;
-            cout << "File loaded successfully!\n"
-                 << "  - " << submissions.size() << " submissions\n"
-                 << "  - " << reviewers.size()   << " reviewers\n";
-            return true;
-        }
-
-        cerr << "ERROR: File contains invalid data\n";
-        dataLoaded = false;
+    if (subs.empty())
+    {
+        std::cerr << "[batch] error: no submissions loaded\n";
         return false;
     }
 
-    // ── Display ───────────────────────────────────────────────────────────────
+    c.outputFileName = outputFile; // CLI arg overrides value from file
 
-    void displayData() const {
-        if (!dataLoaded) {
-            cout << "No data loaded. Please load a file first.\n";
-            return;
+    FlowNetwork net(subs, revs, p, c.generateAssignments);
+    Scheduler   sched(net, subs, revs);
+
+    if (c.riskAnalysis != 0)
+        sched.runRiskAnalysis(c.riskAnalysis);
+
+    Output::write(sched, c);
+    std::cerr << "[batch] done.\n";
+    return true;
+}
+
+// ─── interactive mode ─────────────────────────────────────────────────────────
+
+/**
+ * @brief Text-menu loop.
+ *
+ * Options:
+ *  1  Load input file
+ *  2  Display loaded data
+ *  3  Run assignment
+ *  4  Run risk analysis
+ *  5  Save output
+ *  0  Exit
+ *
+ * FlowNetwork must outlive Scheduler (Scheduler stores a reference to it),
+ * so both are kept as unique_ptrs in the same scope and reset together.
+ *
+ * @complexity O(1) per iteration, excluding pipeline calls.
+ */
+static void runInteractive()
+{
+    std::map<int, Submission> subs;
+    std::map<int, Reviewer>   revs;
+    Parameters p = {};
+    Control    c = {};
+    c.outputFileName = "output.csv";
+    bool loaded = false;
+
+    // Both reset together whenever a new file is loaded.
+    std::unique_ptr<FlowNetwork> net;
+    std::unique_ptr<Scheduler>   sched;
+
+    int opt = -1;
+    do
+    {
+        std::cout << "\n" << std::string(50, '=')
+                  << "\n  REVIEW ASSIGNMENT TOOL"
+                  << "\n  File: " << (loaded ? c.outputFileName : "(none)")
+                  << "\n" << std::string(50, '-')
+                  << "\n  1  Load input file"
+                  << "\n  2  Display loaded data"
+                  << "\n  3  Run assignment"
+                  << "\n  4  Run risk analysis"
+                  << "\n  5  Save output"
+                  << "\n  0  Exit"
+                  << "\n" << std::string(50, '-')
+                  << "\n  Option: ";
+
+        if (!(std::cin >> opt))
+        {
+            std::cin.clear();
+            opt = -1;
         }
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        cout << "\nCURRENT DATA:\n" << string(40, '-') << "\n";
+        switch (opt)
+        {
+        // 1 ── load ──────────────────────────────────────────────────────────
+        case 1:
+        {
+            std::string file;
+            std::cout << "Input file (Absolute path): ";
+            std::getline(std::cin, file);
 
-        // Submissions
-        cout << "\nSUBMISSIONS (" << submissions.size() << "):\n"
-             << setw(5) << "ID" << " | " << setw(30) << left << "Title" << " | Topics\n"
-             << string(50, '-') << "\n";
-        for (const auto& sub : submissions) {
-            cout << setw(5) << right << sub.id << " | "
-                 << setw(30) << left << truncate(sub.title, 30) << " | "
-                 << sub.primaryTopic;
-            if (sub.secondaryTopic > 0) cout << ", " << sub.secondaryTopic;
-            cout << "\n";
-        }
+            std::map<int, Submission> ns;
+            std::map<int, Reviewer>   nr;
+            Parameters np = {};
+            Control    nc = {};
+            nc.outputFileName = "output.csv";
 
-        // Reviewers
-        cout << "\nREVIEWERS (" << reviewers.size() << "):\n"
-             << setw(5) << "ID" << " | " << setw(20) << left << "Name" << " | Expertise\n"
-             << string(40, '-') << "\n";
-        for (const auto& rev : reviewers) {
-            cout << setw(5) << right << rev.id << " | "
-                 << setw(20) << left << truncate(rev.name, 20) << " | "
-                 << rev.primaryExpertise;
-            if (rev.secondaryExpertise > 0) cout << ", " << rev.secondaryExpertise;
-            cout << "\n";
-        }
+            Parser::parse(file, ns, nr, np, nc);
 
-        // Parameters
-        cout << "\nPARAMETERS:\n"
-             << "  MinReviewsPerSubmission:   " << params.minReviewsPerSubmission   << "\n"
-             << "  MaxReviewsPerReviewer:     " << params.maxReviewsPerReviewer     << "\n"
-             << "  PrimaryReviewerExpertise:  " << params.primaryReviewerExpertise  << "\n"
-             << "  SecondaryReviewerExpertise:" << params.secondaryReviewerExpertise << "\n"
-             << "  PrimarySubmissionDomain:   " << params.primarySubmissionDomain   << "\n"
-             << "  SecondarySubmissionDomain: " << params.secondarySubmissionDomain  << "\n";
-
-        // Control
-        cout << "\nCONTROL SETTINGS:\n"
-             << "  GenerateAssignments: " << control.generateAssignments << "\n"
-             << "  RiskAnalysis:        " << control.riskAnalysis        << "\n"
-             << "  OutputFileName:      " << control.outputFileName      << "\n";
-    }
-
-    // ── Parameter configuration ───────────────────────────────────────────────
-
-    void configureParameters() {
-        cout << "\nCONFIGURE PARAMETERS:\n" << string(40, '-') << "\n";
-
-        auto promptInt = [](const string& prompt, int current) -> int {
-            cout << prompt << " [" << current << "]: ";
-            string input;
-            getline(cin, input);
-            if (input.empty()) return current;
-            try {
-                return safeStoi(input, prompt);
-            } catch (const exception& e) {
-                cerr << "WARNING: " << e.what() << " – keeping current value.\n";
-                return current;
-            }
-        };
-
-        params.minReviewsPerSubmission  = promptInt("MinReviewsPerSubmission",  params.minReviewsPerSubmission);
-        params.maxReviewsPerReviewer    = promptInt("MaxReviewsPerReviewer",    params.maxReviewsPerReviewer);
-        control.generateAssignments     = promptInt("GenerateAssignments (0/1/2/3)", control.generateAssignments);
-        control.riskAnalysis            = promptInt("RiskAnalysis (0 or K)",    control.riskAnalysis);
-
-        cout << "Parameters updated!\n";
-    }
-
-    // ── Batch mode ────────────────────────────────────────────────────────────
-
-    bool runBatchMode(const string& inputFile, const string& outputFile) {
-        cout << "Running in batch mode...\n"
-             << "Input file:  " << inputFile  << "\n"
-             << "Output file: " << outputFile << "\n";
-
-        if (!readInputFile(inputFile)) {
-            cerr << "Batch mode failed: could not load input file\n";
-            return false;
-        }
-
-        // TODO: implement assignment logic (T2.x)
-        cout << "Assignment logic will be implemented in T2 tasks\n"
-             << "Output would be written to: " << outputFile << "\n";
-
-        return true;
-    }
-
-    // ── Interactive loop ──────────────────────────────────────────────────────
-
-    void runInteractive() {
-        int option;
-        do {
-            printHeader();
-            cout << "Current file: " << (dataLoaded ? currentInputFile : "None") << "\n";
-            printMenu();
-
-            if (!(cin >> option)) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                option = -1;
-            } else {
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            if (ns.empty())
+            {
+                std::cerr << "Error: no submissions loaded\n";
+                break;
             }
 
-            switch (option) {
-                case 1: {
-                    string filename;
-                    cout << "Enter input filename: ";
-                    getline(cin, filename);
-                    readInputFile(filename);
-                    waitForKeyPress();
-                    break;
-                }
-                case 2:
-                    displayData();
-                    waitForKeyPress();
-                    break;
-                case 3:
-                    if (dataLoaded) {
-                        cout << "\nRunning review assignment (Mode " << control.generateAssignments << ")...\n";
-                        // TODO: implement T2.1, T2.2, T2.4
-                        cout << "Assignment logic will be implemented in T2 tasks\n";
-                    } else {
-                        cout << "Please load data first.\n";
-                    }
-                    waitForKeyPress();
-                    break;
-                case 4:
-                    if (dataLoaded && control.riskAnalysis > 0) {
-                        cout << "\nRunning risk analysis (K=" << control.riskAnalysis << ")...\n";
-                        // TODO: implement T2.2, T2.3
-                        cout << "Risk analysis will be implemented in T2 tasks\n";
-                    } else {
-                        cout << "Please load data and set RiskAnalysis > 0 first.\n";
-                    }
-                    waitForKeyPress();
-                    break;
-                case 5:
-                    configureParameters();
-                    waitForKeyPress();
-                    break;
-                case 6:
-                    if (dataLoaded) {
-                        cout << "\nSaving output to: " << control.outputFileName << "\n";
-                        // TODO: implement output writing
-                        cout << "Output saving will be implemented in T2 tasks\n";
-                    } else {
-                        cout << "No data to save.\n";
-                    }
-                    waitForKeyPress();
-                    break;
-                case 7: {
-                    string infile, outfile;
-                    cout << "Enter input file for batch mode: ";
-                    getline(cin, infile);
-                    cout << "Enter output file: ";
-                    getline(cin, outfile);
-                    runBatchMode(infile, outfile);
-                    waitForKeyPress();
-                    break;
-                }
-                case 0:
-                    cout << "Exiting... Goodbye!\n";
-                    break;
-                default:
-                    cout << "Invalid option!\n";
-                    waitForKeyPress();
+            subs = ns; revs = nr; p = np; c = nc;
+            loaded = true;
+            sched.reset();
+            net.reset();
+
+            std::cout << "Loaded " << subs.size() << " submission(s), "
+                      << revs.size() << " reviewer(s).\n";
+            pause();
+            break;
+        }
+
+        // 2 ── display ────────────────────────────────────────────────────────
+        case 2:
+            if (!loaded) std::cout << "Load a file first (option 1).\n";
+            else         displayData(subs, revs, p, c);
+            pause();
+            break;
+
+        // 3 ── assign ─────────────────────────────────────────────────────────
+        case 3:
+            if (!loaded)
+            {
+                std::cout << "Load a file first.\n";
+                pause(); break;
             }
-        } while (option != 0);
+
+            std::cout << "Running (mode " << c.generateAssignments << ")...\n";
+            net   = std::unique_ptr<FlowNetwork>(new FlowNetwork(subs, revs, p, c.generateAssignments));
+            sched = std::unique_ptr<Scheduler>(new Scheduler(*net, subs, revs));
+            displayResults(*sched);
+            pause();
+            break;
+
+        // 4 ── risk analysis ──────────────────────────────────────────────────
+        case 4:
+            if (!sched)
+            {
+                std::cout << "Run the assignment first (option 3).\n";
+                pause(); break;
+            }
+            if (c.riskAnalysis == 0)
+            {
+                std::cout << "RiskAnalysis is 0 in the file.\n";
+                pause(); break;
+            }
+            std::cout << "Running risk analysis (k=" << c.riskAnalysis << ")...\n";
+            sched->runRiskAnalysis(c.riskAnalysis);
+            if (sched->getRiskyReviewers().empty())
+            {
+                std::cout << "No risky reviewers found.\n";
+            }
+            else
+            {
+                std::cout << "Risky reviewer IDs: ";
+                for (std::set<int>::iterator it = sched->getRiskyReviewers().begin();
+                     it != sched->getRiskyReviewers().end(); ++it)
+                    std::cout << *it << " ";
+                std::cout << "\n";
+            }
+            pause();
+            break;
+
+        // 5 ── save ───────────────────────────────────────────────────────────
+        case 5:
+        {
+            if (!sched)
+            {
+                std::cout << "Nothing to save yet — run assignment first.\n";
+                pause(); break;
+            }
+            std::string fname;
+            std::cout << "Output file [" << c.outputFileName << "]: ";
+            std::getline(std::cin, fname);
+            if (!fname.empty()) c.outputFileName = fname;
+            Output::write(*sched, c);
+            std::cout << "Saved to \"" << c.outputFileName << "\"\n";
+            pause();
+            break;
+        }
+
+        case 0:
+            std::cout << "Goodbye!\n";
+            break;
+
+        default:
+            std::cout << "Invalid option.\n";
+            pause();
+        }
     }
-};
+    while (opt != 0);
+}
 
-// ── Entry point ───────────────────────────────────────────────────────────────
+// ─── entry point ──────────────────────────────────────────────────────────────
 
-int main(int argc, char* argv[]) {
-    ReviewAssignmentTool tool;
+/**
+ * @brief Program entry point.
+ *
+ * Usage:
+ *  ./review_tool                        — interactive mode
+ *  ./review_tool -b input.csv out.csv   — batch mode
+ */
 
-    if (argc >= 4 && string(argv[1]) == "-b") {
-        cout << "Starting in BATCH mode\n";
-        return tool.runBatchMode(argv[2], argv[3]) ? 0 : 1;
-    } else if (argc > 1) {
-        cerr << "Usage:\n"
-             << "  Interactive: " << argv[0] << "\n"
-             << "  Batch:       " << argv[0] << " -b input.csv output.csv\n";
-        return 1;
-    } else {
-        cout << "Starting in INTERACTIVE mode\n";
-        tool.runInteractive();
+int main(int argc, char* argv[])
+{
+    if (argc == 1)
+    {
+        runInteractive();
+        return 0;
     }
-
-    return 0;
+    if (argc >= 4 && std::string(argv[1]) == "-b")
+    {
+        return runBatch(argv[2], argv[3]) ? 0 : 1;
+    }
+    std::cerr << "Usage:\n"
+              << "" << argv[0] << "\n"
+              << "" << argv[0] << " -b input.csv output.csv\n";
+    return 1;
 }
