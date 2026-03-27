@@ -59,6 +59,7 @@ bool FlowNetwork::topicsMatch(const Submission& sub, const Reviewer& rev) const
             return true;
         break;
     default: return false;
+
     }
     return false;
 }
