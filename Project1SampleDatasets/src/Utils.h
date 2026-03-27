@@ -6,6 +6,11 @@
 #include <algorithm>
 #include <string>
 
+/**
+ *
+ * @param string1
+ * @return
+ */
 std::string trim(const std::string& string1)
 {
     if (string1.empty()) return "";

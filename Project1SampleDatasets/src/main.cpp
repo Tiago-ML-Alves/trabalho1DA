@@ -41,7 +41,7 @@ static void pause()
 {
     std::cout << "\n  Press Enter to continue...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cin.get();
+    //std::cin.get();
 }
 
 // ─── display ─────────────────────────────────────────────────────────────────
@@ -60,9 +60,9 @@ static void displayData(const std::map<int, Submission>& subs,
     for (const auto& kv : subs)
     {
         const Submission& s = kv.second;
-        std::cout << "" << std::setw(4)  << std::right << s.id
-                  << "" << std::setw(30) << std::left  << truncate(s.title, 30)
-                  << "topic " << s.primaryTopic;
+        std::cout << "  " << std::setw(4)  << std::right << s.id
+                  << "  " << std::setw(30) << std::left  << truncate(s.title, 30)
+                  << "  topic " << s.primaryTopic;
         if (s.secondaryTopic != -1) std::cout << "/" << s.secondaryTopic;
         std::cout << "\n";
     }
@@ -72,9 +72,9 @@ static void displayData(const std::map<int, Submission>& subs,
     for (const auto& kv : revs)
     {
         const Reviewer& r = kv.second;
-        std::cout << "" << std::setw(4)  << std::right << r.id
-                  << "" << std::setw(22) << std::left  << truncate(r.name, 22)
-                  << "exp " << r.primaryExpertise;
+        std::cout << "  " << std::setw(4)  << std::right << r.id
+                  << "  " << std::setw(22) << std::left  << truncate(r.name, 22)
+                  << "  exp " << r.primaryExpertise;
         if (r.secondaryExpertise != -1) std::cout << "/" << r.secondaryExpertise;
         std::cout << "\n";
     }
@@ -82,7 +82,7 @@ static void displayData(const std::map<int, Submission>& subs,
     std::cout << "\n  PARAMETERS\n"
               << "  minReviewsPerSubmission  " << p.minReviewsPerSubmission  << "\n"
               << "  maxReviewsPerReviewer    " << p.maxReviewsPerReviewer    << "\n"
-              << "CONTROL\n"
+              << "  CONTROL\n"
               << "  generateAssignments      " << c.generateAssignments << "\n"
               << "  riskAnalysis             " << c.riskAnalysis        << "\n"
               << "  outputFileName           " << c.outputFileName      << "\n";
@@ -247,24 +247,19 @@ static void runInteractive()
         // 2 ── display ────────────────────────────────────────────────────────
         case 2:
             if (!loaded) std::cout << "Load a file first (option 1).\n";
-            else         displayData(subs, revs, p, c);
-            pause();
-            break;
+            else displayData(subs, revs, p, c);
+            pause(); break;
 
         // 3 ── assign ─────────────────────────────────────────────────────────
         case 3:
-            if (!loaded)
-            {
-                std::cout << "Load a file first.\n";
-                pause(); break;
-            }
-
-            std::cout << "Running (mode " << c.generateAssignments << ")...\n";
+            if (!loaded) std::cout << "Load a file first (option 1).\n";
+            else{
             net   = std::unique_ptr<FlowNetwork>(new FlowNetwork(subs, revs, p, c.generateAssignments));
             sched = std::unique_ptr<Scheduler>(new Scheduler(*net, subs, revs));
-            displayResults(*sched);
+            displayResults(*sched);}
             pause();
             break;
+
 
         // 4 ── risk analysis ──────────────────────────────────────────────────
         case 4:
@@ -273,23 +268,17 @@ static void runInteractive()
                 std::cout << "Run the assignment first (option 3).\n";
                 pause(); break;
             }
-            if (c.riskAnalysis == 0)
-            {
-                std::cout << "RiskAnalysis is 0 in the file.\n";
-                pause(); break;
-            }
-            std::cout << "Running risk analysis (k=" << c.riskAnalysis << ")...\n";
+            std::cout << "  RiskAnalysis is " << c.riskAnalysis << " in the file.\n" << "" << std::string(54, '-') <<
+                    "\n";
+
             sched->runRiskAnalysis(c.riskAnalysis);
-            if (sched->getRiskyReviewers().empty())
-            {
-                std::cout << "No risky reviewers found.\n";
-            }
+
+            if (sched->getRiskyReviewers().empty()) std::cout << "No risky reviewers found.\n";
             else
             {
-                std::cout << "Risky reviewer IDs: ";
-                for (std::set<int>::iterator it = sched->getRiskyReviewers().begin();
-                     it != sched->getRiskyReviewers().end(); ++it)
-                    std::cout << *it << " ";
+                std::cout << "  Risky reviewer IDs: ";
+                for (auto aaa : sched->getRiskyReviewers())
+                    std::cout << aaa << " ";
                 std::cout << "\n";
             }
             pause();
