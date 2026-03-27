@@ -303,7 +303,7 @@ static void runInteractive()
         }
 
         case 0:
-            std::cout << "Goodbye!\n";
+            std::cout << "Goodbye :)\n";
             break;
 
         default:
