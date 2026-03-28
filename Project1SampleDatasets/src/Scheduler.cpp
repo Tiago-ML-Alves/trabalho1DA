@@ -61,8 +61,8 @@ bool Scheduler::checkSuccessful()
 	}
 	return true;
 }
-void Scheduler::runRiskAnalysis(int k)
-{
+void Scheduler::runRiskAnalysis(int k){
+
 	if (k == 0) return;
 	if (k == 1)
 	{

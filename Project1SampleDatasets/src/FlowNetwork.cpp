@@ -43,6 +43,7 @@ bool FlowNetwork::topicsMatch(const Submission& sub, const Reviewer& rev) const
 {
     switch (generateAssignments_)
     {
+    case (0):
     case (1):
         if (sub.primaryTopic == rev.primaryExpertise) return true;
         break;
@@ -58,6 +59,7 @@ bool FlowNetwork::topicsMatch(const Submission& sub, const Reviewer& rev) const
             return true;
         break;
     default: return false;
+
     }
     return false;
 }
@@ -66,6 +68,7 @@ int FlowNetwork::matchingTopic(const Submission& sub, const Reviewer& rev) const
 {
     switch (generateAssignments_)
     {
+    case (0):
     case (1):
         if (sub.primaryTopic == rev.primaryExpertise) return sub.primaryTopic;
         break;
