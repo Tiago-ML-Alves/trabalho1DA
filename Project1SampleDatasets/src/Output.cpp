@@ -15,7 +15,7 @@ void Output::write(const Scheduler& scheduler, const Control& control)
     }
     if (control.generateAssignments != 0)
     {
-        if (scheduler.wasSuccessful())
+        if (!scheduler.wasSuccessful())
         {
             writeAssignments(scheduler.getAssignments(), file);
         }
