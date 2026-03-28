@@ -216,7 +216,7 @@ static void runInteractive()
         case 1:
         {
             std::string file;
-            std::cout << "Input file (Absolute path): ";
+            std::cout << "Input file name (Absolute path): ";
             std::getline(std::cin, file);
 
             std::map<int, Submission> ns;
