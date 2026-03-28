@@ -1,6 +1,14 @@
-cmake_minimum_required(VERSION 3.10)
-project(ReviewAssignmentTool)
 
-set(CMAKE_CXX_STANDARD 11)
+cmake_minimum_required(VERSION 3.20)
 
-add_executable(review_tool main.cpp)
+project(project1)
+
+set(CMAKE_CXX_STANDARD 20)
+
+add_executable(main
+        Project1SampleDatasets/src/main.cpp
+        Project1SampleDatasets/src/Parser.cpp
+        Project1SampleDatasets/src/FlowNetwork.cpp
+        Project1SampleDatasets/src/Scheduler.cpp
+        Project1SampleDatasets/src/Output.cpp
+)
