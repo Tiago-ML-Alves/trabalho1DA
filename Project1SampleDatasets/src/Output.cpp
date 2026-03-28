@@ -1,8 +1,12 @@
 #include "Output.h"
+
+#include <filesystem>
 #include <fstream>
 
 void Output::write(const Scheduler& scheduler, const Control& control)
 {
+    std::filesystem::path outputPath(control.outputFileName);
+    if (outputPath.has_parent_path()) std::filesystem::create_directories(outputPath.parent_path());
     std::ofstream file(control.outputFileName);
     if (!file.is_open())
     {
@@ -11,11 +15,8 @@ void Output::write(const Scheduler& scheduler, const Control& control)
     }
     if (control.generateAssignments != 0)
     {
-        if (scheduler.wasSuccessful())
-        {
-            writeAssignments(scheduler.getAssignments(), file);
-        }
-        else
+        writeAssignments(scheduler.getAssignments(), file);
+        if (!scheduler.wasSuccessful())
         {
             writeFailedAssignments(scheduler.getMissingReviews(), file);
         }

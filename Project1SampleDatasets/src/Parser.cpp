@@ -36,7 +36,7 @@ void Parser::parse(const std::string& filename,
     std::ifstream file(filename);
     if (!file.is_open())
     {
-        std::cerr << "error: could not open \"" << filename << "\"" << std::endl;
+        std::cerr << "\nerror: could not open \"" << filename << "\"" << std::endl;
         return;
     }
 
