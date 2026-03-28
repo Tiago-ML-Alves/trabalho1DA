@@ -99,13 +99,13 @@ static void displayResults(const Scheduler& sched)
         std::vector<Assignment> asgn = sched.getAssignments();
         std::cout << "\n  " << asgn.size() << " assignment(s) made.\n"
                   << "" << std::setw(12) << "Submission"
-                  << "" << std::setw(10) << "Reviewer"
-                  << "Topic\n"
+                  << "" << std::setw(12) << "Reviewer"
+                  << "" << std::setw(12) << "Topic\n"
                   << "" << std::string(36, '-') << "\n";
         for (std::size_t i = 0; i < asgn.size(); ++i)
-            std::cout << "" << std::setw(12) << asgn[i].submissionID
-                      << "" << std::setw(10) << asgn[i].reviewerID
-                      << "" << asgn[i].matchedTopic << "\n";
+            std::cout << "" << std::setw(5) << asgn[i].submissionID
+                      << "" << std::setw(15) << asgn[i].reviewerID
+                      << "" << std::setw(13) << asgn[i].matchedTopic << "\n";
     }
     else
     {
