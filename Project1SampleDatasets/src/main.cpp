@@ -32,12 +32,12 @@
 static std::string truncate(const std::string& s, std::size_t max)
 {
     if (s.size() <= max) return s;
-    if (max <= 3)        return s.substr(0, max);
+    if (max <= 3) return s.substr(0, max);
     return s.substr(0, max - 3) + "...";
 }
 
 /** @brief Wait for the user to press Enter. */
-static void pause()
+static void pauseExecution()
 {
     std::cout << "\n  Press Enter to continue...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -74,7 +74,7 @@ static void displayData(const std::map<int, Submission>& subs,
         const Reviewer& r = kv.second;
         std::cout << "  " << std::setw(4)  << std::right << r.id
                   << "  " << std::setw(22) << std::left  << truncate(r.name, 22)
-                  << "  exp " << r.primaryExpertise;
+                  << "  expertise " << r.primaryExpertise;
         if (r.secondaryExpertise != -1) std::cout << "/" << r.secondaryExpertise;
         std::cout << "\n";
     }
@@ -177,9 +177,9 @@ static bool runBatch(const std::string& inputFile, const std::string& outputFile
 static void runInteractive()
 {
     std::map<int, Submission> subs;
-    std::map<int, Reviewer>   revs;
+    std::map<int, Reviewer> revs;
     Parameters p = {};
-    Control    c = {};
+    Control c = {};
     c.outputFileName = "output.csv";
     bool loaded = false;
 
@@ -190,7 +190,7 @@ static void runInteractive()
     int opt = -1;
     do
     {
-        std::cout << "\n" << std::string(50, '=')
+        std::cout << "\n" << std::string(50, '-')
                   << "\n  REVIEW ASSIGNMENT TOOL"
                   << "\n  File: " << (loaded ? c.outputFileName : "(none)")
                   << "\n" << std::string(50, '-')
@@ -219,10 +219,11 @@ static void runInteractive()
             std::cout << "Input file (Absolute path): ";
             std::getline(std::cin, file);
 
+
             std::map<int, Submission> ns;
-            std::map<int, Reviewer>   nr;
+            std::map<int, Reviewer> nr;
             Parameters np = {};
-            Control    nc = {};
+            Control nc = {};
             nc.outputFileName = "output.csv";
 
             Parser::parse(file, ns, nr, np, nc);
@@ -240,7 +241,7 @@ static void runInteractive()
 
             std::cout << "Loaded " << subs.size() << " submission(s), "
                       << revs.size() << " reviewer(s).\n";
-            pause();
+            pauseExecution();
             break;
         }
 
@@ -248,16 +249,17 @@ static void runInteractive()
         case 2:
             if (!loaded) std::cout << "Load a file first (option 1).\n";
             else displayData(subs, revs, p, c);
-            pause(); break;
+            pauseExecution(); break;
 
         // 3 ── assign ─────────────────────────────────────────────────────────
         case 3:
             if (!loaded) std::cout << "Load a file first (option 1).\n";
-            else{
-            net   = std::unique_ptr<FlowNetwork>(new FlowNetwork(subs, revs, p, c.generateAssignments));
-            sched = std::unique_ptr<Scheduler>(new Scheduler(*net, subs, revs));
-            displayResults(*sched);}
-            pause();
+            else {
+                net = std::unique_ptr<FlowNetwork>(new FlowNetwork(subs, revs, p, c.generateAssignments));
+                sched = std::unique_ptr<Scheduler>(new Scheduler(*net, subs, revs));
+                displayResults(*sched);
+            }
+            pauseExecution();
             break;
 
 
@@ -266,7 +268,7 @@ static void runInteractive()
             if (!sched)
             {
                 std::cout << "Run the assignment first (option 3).\n";
-                pause(); break;
+                pauseExecution(); break;
             }
             std::cout << "  RiskAnalysis is " << c.riskAnalysis << " in the file.\n" << "" << std::string(54, '-') <<
                     "\n";
@@ -277,11 +279,11 @@ static void runInteractive()
             else
             {
                 std::cout << "  Risky reviewer IDs: ";
-                for (auto aaa : sched->getRiskyReviewers())
-                    std::cout << aaa << " ";
+                for (auto rev : sched->getRiskyReviewers())
+                    std::cout << rev << " ";
                 std::cout << "\n";
             }
-            pause();
+            pauseExecution();
             break;
 
         // 5 ── save ───────────────────────────────────────────────────────────
@@ -290,7 +292,7 @@ static void runInteractive()
             if (!sched)
             {
                 std::cout << "Nothing to save yet — run assignment first.\n";
-                pause(); break;
+                pauseExecution(); break;
             }
             std::string fname;
             std::cout << "Output file [" << c.outputFileName << "]: ";
@@ -298,7 +300,7 @@ static void runInteractive()
             if (!fname.empty()) c.outputFileName = fname;
             Output::write(*sched, c);
             std::cout << "Saved to \"" << c.outputFileName << "\"\n";
-            pause();
+            pauseExecution();
             break;
         }
 
@@ -308,7 +310,7 @@ static void runInteractive()
 
         default:
             std::cout << "Invalid option.\n";
-            pause();
+            pauseExecution();
         }
     }
     while (opt != 0);
