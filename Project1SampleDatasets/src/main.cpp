@@ -143,6 +143,12 @@ static bool runBatch(const std::string& inputFile, const std::string& outputFile
         return false;
     }
 
+    if (p.minReviewsPerSubmission == 0 || p.maxReviewsPerReviewer == 0)
+    {
+        std::cerr << "[batch] error: invalid parameters\n";
+        return false;
+    }
+
     c.outputFileName = outputFile; // CLI arg overrides value from file
 
     FlowNetwork net(subs, revs, p, c.generateAssignments);
