@@ -1,0 +1,123 @@
+\doxysection{Parser Class Reference}
+\hypertarget{classParser}{}\label{classParser}\index{Parser@{Parser}}
+
+
+Static utility that reads and parses the CSV input file.  
+
+
+
+
+{\ttfamily \#include $<$Parser.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEdge}{static}} \mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classParser_a4842ea602aaee01e2401e0ab0b975100}{parse}} (\mbox{\hyperlink{classEdge}{const}} std\+::string \&\mbox{\hyperlink{classEdge}{filename}}, std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&\mbox{\hyperlink{classEdge}{submissions}}, std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&\mbox{\hyperlink{classEdge}{reviewers}}, \mbox{\hyperlink{structParameters}{Parameters}} \&\mbox{\hyperlink{classEdge}{parameters}}, \mbox{\hyperlink{structControl}{Control}} \&\mbox{\hyperlink{classEdge}{control}})
+\item 
+\mbox{\hyperlink{classEdge}{static}} \mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classParser_a296888711b4d332cccc035ce866c3933}{parse\+Submissions}} (\mbox{\hyperlink{classEdge}{const}} std\+::string \&\mbox{\hyperlink{classEdge}{line}}, std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&\mbox{\hyperlink{classEdge}{submissions}})
+\begin{DoxyCompactList}\small\item\em Parse one line from the \#\+Submissions section. @complexity O(1) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{static}} \mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classParser_a874bd2a559086998c1d32a6d0011157b}{parse\+Reviewers}} (\mbox{\hyperlink{classEdge}{const}} std\+::string \&\mbox{\hyperlink{classEdge}{line}}, std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&\mbox{\hyperlink{classEdge}{reviewers}})
+\begin{DoxyCompactList}\small\item\em Parse one line from the \#\+Reviewers section. @complexity O(1) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{static}} \mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classParser_a118d4aa97966310d9e709af8a430d05d}{parse\+Parameters}} (\mbox{\hyperlink{classEdge}{const}} std\+::string \&\mbox{\hyperlink{classEdge}{line}}, \mbox{\hyperlink{structParameters}{Parameters}} \&\mbox{\hyperlink{classEdge}{parameters}})
+\begin{DoxyCompactList}\small\item\em Parse one key,value line from the \doxylink{structParameters}{Parameters} section. @complexity O(1) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{static}} \mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classParser_a443fdf2026f4023cf69c1990c2230d39}{parse\+Control}} (\mbox{\hyperlink{classEdge}{const}} std\+::string \&\mbox{\hyperlink{classEdge}{line}}, \mbox{\hyperlink{structControl}{Control}} \&\mbox{\hyperlink{classEdge}{control}})
+\begin{DoxyCompactList}\small\item\em Parse one key,value line from the \doxylink{structControl}{Control} section. @complexity O(1) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Static utility that reads and parses the CSV input file. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classParser_a4842ea602aaee01e2401e0ab0b975100}\label{classParser_a4842ea602aaee01e2401e0ab0b975100} 
+\index{Parser@{Parser}!parse@{parse}}
+\index{parse@{parse}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} Parser\+::parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} std\+::string \&}]{filename,  }\item[{std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&}]{submissions,  }\item[{std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&}]{reviewers,  }\item[{\mbox{\hyperlink{structParameters}{Parameters}} \&}]{parameters,  }\item[{\mbox{\hyperlink{structControl}{Control}} \&}]{control }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Iterates through every line of the file. Lines starting with {\ttfamily \#} switch the active section; all other non-\/empty lines are forwarded to the matching helper. Unknown {\ttfamily \#}-\/prefixed lines (that are not recognised section headers) are silently skipped so that comments inside the file are allowed.
+
+\begin{DoxyNote}{Note}
+The {\ttfamily submissions} and {\ttfamily reviewers} parameters are passed {\bfseries{by reference}} so that inserted entries are visible to the caller. (Previous version passed them by value — a bug that caused all parsed data to be lost.) 
+\end{DoxyNote}
+\Hypertarget{classParser_a443fdf2026f4023cf69c1990c2230d39}\label{classParser_a443fdf2026f4023cf69c1990c2230d39} 
+\index{Parser@{Parser}!parseControl@{parseControl}}
+\index{parseControl@{parseControl}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parseControl()}{parseControl()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} Parser\+::parse\+Control (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} std\+::string \&}]{line,  }\item[{\mbox{\hyperlink{structControl}{Control}} \&}]{control }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse one key,value line from the \doxylink{structControl}{Control} section. @complexity O(1) 
+
+Parses a single key=value line from the \doxylink{structControl}{Control} section.
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & Raw CSV line with format "{}\+Key\+Name, value"{}. \\
+\hline
+{\em control} & \doxylink{structControl}{Control} struct to update. @complexity O(1) — fixed number of recognised keys. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classParser_a118d4aa97966310d9e709af8a430d05d}\label{classParser_a118d4aa97966310d9e709af8a430d05d} 
+\index{Parser@{Parser}!parseParameters@{parseParameters}}
+\index{parseParameters@{parseParameters}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parseParameters()}{parseParameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} Parser\+::parse\+Parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} std\+::string \&}]{line,  }\item[{\mbox{\hyperlink{structParameters}{Parameters}} \&}]{parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse one key,value line from the \doxylink{structParameters}{Parameters} section. @complexity O(1) 
+
+Parses a single key=value line from the \doxylink{structParameters}{Parameters} section.
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & Raw CSV line with format "{}\+Key\+Name, value"{}. \\
+\hline
+{\em parameters} & \doxylink{structParameters}{Parameters} struct to update. @complexity O(1) — fixed number of recognised keys. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classParser_a874bd2a559086998c1d32a6d0011157b}\label{classParser_a874bd2a559086998c1d32a6d0011157b} 
+\index{Parser@{Parser}!parseReviewers@{parseReviewers}}
+\index{parseReviewers@{parseReviewers}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parseReviewers()}{parseReviewers()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} Parser\+::parse\+Reviewers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} std\+::string \&}]{line,  }\item[{std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&}]{reviewers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse one line from the \#\+Reviewers section. @complexity O(1) 
+
+Parses a single CSV line from the \#\+Reviewers section.
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & Raw CSV line to parse. \\
+\hline
+{\em reviewers} & Map to insert the parsed \doxylink{structReviewer}{Reviewer} into. @complexity O(\+F) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classParser_a296888711b4d332cccc035ce866c3933}\label{classParser_a296888711b4d332cccc035ce866c3933} 
+\index{Parser@{Parser}!parseSubmissions@{parseSubmissions}}
+\index{parseSubmissions@{parseSubmissions}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{parseSubmissions()}{parseSubmissions()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} Parser\+::parse\+Submissions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} std\+::string \&}]{line,  }\item[{std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&}]{submissions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse one line from the \#\+Submissions section. @complexity O(1) 
+
+Parses a single CSV line from the \#\+Submissions section.
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & Raw CSV line to parse. \\
+\hline
+{\em submissions} & Map to insert the parsed \doxylink{structSubmission}{Submission} into. @complexity O(\+F) where F is the number of comma-\/separated fields. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Project1\+Sample\+Datasets/src/\mbox{\hyperlink{Parser_8h}{Parser.\+h}}\item 
+Project1\+Sample\+Datasets/src/\mbox{\hyperlink{Parser_8cpp}{Parser.\+cpp}}\end{DoxyCompactItemize}

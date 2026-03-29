@@ -1,0 +1,162 @@
+\doxysection{Flow\+Network Class Reference}
+\hypertarget{classFlowNetwork}{}\label{classFlowNetwork}\index{FlowNetwork@{FlowNetwork}}
+
+
+Builds a Max-\/\+Flow network from submissions and reviewers.  
+
+
+
+
+{\ttfamily \#include $<$Flow\+Network.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFlowNetwork_af7eb68e9985860ad23a97df8a3a8b28c}{Flow\+Network}} (\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&\mbox{\hyperlink{classEdge}{submissions}}, \mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&\mbox{\hyperlink{classEdge}{reviewers}}, \mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structParameters}{Parameters}} \&\mbox{\hyperlink{classEdge}{parameters}}, \mbox{\hyperlink{classEdge}{int}} generate\+Assignments)
+\begin{DoxyCompactList}\small\item\em Constructs the flow network and builds the graph immediately. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGraph}{Graph}}$<$ \mbox{\hyperlink{structNodeInfo}{Node\+Info}} $>$ \& \mbox{\hyperlink{classFlowNetwork_a81b144a39ba2c166972765c84aa4fa68}{get\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Returns a reference to the flow network graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNodeInfo}{Node\+Info}} \mbox{\hyperlink{classFlowNetwork_aa4d5a04e0ebafbc4c5dcbd1e55a5d9c3}{get\+Source}} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the \doxylink{structNodeInfo}{Node\+Info} identifying the source vertex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{int}} \mbox{\hyperlink{classFlowNetwork_a6ee33b3932632fb03153cc08dabad494}{matching\+Topic}} (\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structSubmission}{Submission}} \&\mbox{\hyperlink{classEdge}{sub}}, \mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structReviewer}{Reviewer}} \&\mbox{\hyperlink{classEdge}{rev}}) \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the matched topic ID for a compatible pair, or -\/1 if none. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classFlowNetwork_aa27fea82214258b52db70452e07228a1}{build\+Network}} (\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&\mbox{\hyperlink{classEdge}{submissions}}, \mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&\mbox{\hyperlink{classEdge}{reviewers}})
+\begin{DoxyCompactList}\small\item\em Populates the graph with vertices and edges for the flow network. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNodeInfo}{Node\+Info}} \mbox{\hyperlink{classFlowNetwork_ae7d51bd4af54708f05cdc4ec70ef3186}{get\+Sink}} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the \doxylink{structNodeInfo}{Node\+Info} identifying the sink vertex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structParameters}{Parameters}} \mbox{\hyperlink{classFlowNetwork_a2550d6414d288c0b869d20fd5fa7e2e3}{get\+Parameters}} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the problem parameters used to build this network. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Builds a Max-\/\+Flow network from submissions and reviewers. 
+
+Network topology\+: SOURCE ──(min\+Reviews)──► \mbox{[}\doxylink{structSubmission}{Submission}\mbox{]} ──(1)──► \mbox{[}\doxylink{structReviewer}{Reviewer}\mbox{]} ──(max\+Reviews)──► SINK
+
+\begin{DoxySeeAlso}{See also}
+Edmonds\+Karp.\+h 
+
+\doxylink{classScheduler}{Scheduler} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classFlowNetwork_af7eb68e9985860ad23a97df8a3a8b28c}\label{classFlowNetwork_af7eb68e9985860ad23a97df8a3a8b28c} 
+\index{FlowNetwork@{FlowNetwork}!FlowNetwork@{FlowNetwork}}
+\index{FlowNetwork@{FlowNetwork}!FlowNetwork@{FlowNetwork}}
+\doxysubsubsection{\texorpdfstring{FlowNetwork()}{FlowNetwork()}}
+{\footnotesize\ttfamily Flow\+Network\+::\+Flow\+Network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&}]{submissions,  }\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&}]{reviewers,  }\item[{\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structParameters}{Parameters}} \&}]{parameters,  }\item[{\mbox{\hyperlink{classEdge}{int}}}]{generate\+Assignments }\end{DoxyParamCaption})}
+
+
+
+Constructs the flow network and builds the graph immediately. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em submissions} & Map of submission ID → \doxylink{structSubmission}{Submission}. \\
+\hline
+{\em reviewers} & Map of reviewer ID → \doxylink{structReviewer}{Reviewer}. \\
+\hline
+{\em parameters} & Problem parameters. \\
+\hline
+{\em generate\+Assignments} & Topic-\/matching mode (1, 2 or 3). @complexity O(S × R) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classFlowNetwork_aa27fea82214258b52db70452e07228a1}\label{classFlowNetwork_aa27fea82214258b52db70452e07228a1} 
+\index{FlowNetwork@{FlowNetwork}!buildNetwork@{buildNetwork}}
+\index{buildNetwork@{buildNetwork}!FlowNetwork@{FlowNetwork}}
+\doxysubsubsection{\texorpdfstring{buildNetwork()}{buildNetwork()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} Flow\+Network\+::build\+Network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&}]{submissions,  }\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&}]{reviewers }\end{DoxyParamCaption})}
+
+
+
+Populates the graph with vertices and edges for the flow network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em submissions} & Map of submission ID → \doxylink{structSubmission}{Submission}. \\
+\hline
+{\em reviewers} & Map of reviewer ID → \doxylink{structReviewer}{Reviewer}. @complexity O(S × R) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classFlowNetwork_a81b144a39ba2c166972765c84aa4fa68}\label{classFlowNetwork_a81b144a39ba2c166972765c84aa4fa68} 
+\index{FlowNetwork@{FlowNetwork}!getGraph@{getGraph}}
+\index{getGraph@{getGraph}!FlowNetwork@{FlowNetwork}}
+\doxysubsubsection{\texorpdfstring{getGraph()}{getGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}}$<$ \mbox{\hyperlink{structNodeInfo}{Node\+Info}} $>$ \& Flow\+Network\+::get\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a reference to the flow network graph. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the internal \doxylink{classGraph}{Graph$<$\+Node\+Info$>$}. 
+\end{DoxyReturn}
+\Hypertarget{classFlowNetwork_a2550d6414d288c0b869d20fd5fa7e2e3}\label{classFlowNetwork_a2550d6414d288c0b869d20fd5fa7e2e3} 
+\index{FlowNetwork@{FlowNetwork}!getParameters@{getParameters}}
+\index{getParameters@{getParameters}!FlowNetwork@{FlowNetwork}}
+\doxysubsubsection{\texorpdfstring{getParameters()}{getParameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structParameters}{Parameters}} Flow\+Network\+::get\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the problem parameters used to build this network. 
+
+\begin{DoxyReturn}{Returns}
+Copy of the \doxylink{structParameters}{Parameters} struct. 
+\end{DoxyReturn}
+\Hypertarget{classFlowNetwork_ae7d51bd4af54708f05cdc4ec70ef3186}\label{classFlowNetwork_ae7d51bd4af54708f05cdc4ec70ef3186} 
+\index{FlowNetwork@{FlowNetwork}!getSink@{getSink}}
+\index{getSink@{getSink}!FlowNetwork@{FlowNetwork}}
+\doxysubsubsection{\texorpdfstring{getSink()}{getSink()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structNodeInfo}{Node\+Info}} Flow\+Network\+::get\+Sink (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the \doxylink{structNodeInfo}{Node\+Info} identifying the sink vertex. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{structNodeInfo}{Node\+Info} with type SINK and id 0. 
+\end{DoxyReturn}
+\Hypertarget{classFlowNetwork_aa4d5a04e0ebafbc4c5dcbd1e55a5d9c3}\label{classFlowNetwork_aa4d5a04e0ebafbc4c5dcbd1e55a5d9c3} 
+\index{FlowNetwork@{FlowNetwork}!getSource@{getSource}}
+\index{getSource@{getSource}!FlowNetwork@{FlowNetwork}}
+\doxysubsubsection{\texorpdfstring{getSource()}{getSource()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structNodeInfo}{Node\+Info}} Flow\+Network\+::get\+Source (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the \doxylink{structNodeInfo}{Node\+Info} identifying the source vertex. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{structNodeInfo}{Node\+Info} with type SOURCE and id 0. 
+\end{DoxyReturn}
+\Hypertarget{classFlowNetwork_a6ee33b3932632fb03153cc08dabad494}\label{classFlowNetwork_a6ee33b3932632fb03153cc08dabad494} 
+\index{FlowNetwork@{FlowNetwork}!matchingTopic@{matchingTopic}}
+\index{matchingTopic@{matchingTopic}!FlowNetwork@{FlowNetwork}}
+\doxysubsubsection{\texorpdfstring{matchingTopic()}{matchingTopic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{int}} Flow\+Network\+::matching\+Topic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structSubmission}{Submission}} \&}]{sub,  }\item[{\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structReviewer}{Reviewer}} \&}]{rev }\end{DoxyParamCaption}) const}
+
+
+
+Returns the matched topic ID for a compatible pair, or -\/1 if none. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub} & \doxylink{structSubmission}{Submission}. \\
+\hline
+{\em rev} & \doxylink{structReviewer}{Reviewer}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Matched topic ID. @complexity O(1) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Project1\+Sample\+Datasets/src/\mbox{\hyperlink{FlowNetwork_8h}{Flow\+Network.\+h}}\item 
+Project1\+Sample\+Datasets/src/\mbox{\hyperlink{FlowNetwork_8cpp}{Flow\+Network.\+cpp}}\end{DoxyCompactItemize}

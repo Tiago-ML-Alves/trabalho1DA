@@ -1,0 +1,129 @@
+\doxysection{Scheduler Class Reference}
+\hypertarget{classScheduler}{}\label{classScheduler}\index{Scheduler@{Scheduler}}
+
+
+Orchestrates Max-\/\+Flow execution and interprets the results.  
+
+
+
+
+{\ttfamily \#include $<$Scheduler.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classScheduler_a756c7b183ec3e90f23f72584d04dcf7d}{Scheduler}} (\mbox{\hyperlink{classFlowNetwork}{Flow\+Network}} \&\mbox{\hyperlink{classEdge}{flow\+Network}}, \mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&\mbox{\hyperlink{classEdge}{submissions}}, \mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&\mbox{\hyperlink{classEdge}{reviewers}})
+\begin{DoxyCompactList}\small\item\em Constructs the \doxylink{classScheduler}{Scheduler}, runs Max-\/\+Flow and extracts assignments. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classScheduler_ae9fca17a227c2bf7050735da5327310a}{run\+Risk\+Analysis}} (\mbox{\hyperlink{classEdge}{int}} \mbox{\hyperlink{classEdge}{k}})
+\begin{DoxyCompactList}\small\item\em Simulates reviewer removals to identify critical reviewers. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structAssignment}{Assignment}} $>$ \mbox{\hyperlink{classScheduler_afbf9239be4c3dfb2c0379a5b1ead30ef}{get\+Assignments}} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the list of successful reviewer–submission assignments. \end{DoxyCompactList}\item 
+std\+::set$<$ \mbox{\hyperlink{classEdge}{int}} $>$ \mbox{\hyperlink{classScheduler_aa606cf1f26f9a34ad932e651a6c58edb}{get\+Risky\+Reviewers}} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the set of reviewer IDs whose removal causes assignment failure. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structFailedAssignment}{Failed\+Assignment}} $>$ \mbox{\hyperlink{classScheduler_a24fc56e5ea84ebb4afd43de993c5cfa8}{get\+Missing\+Reviews}} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the list of submissions that could not be fully assigned. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{bool}} \mbox{\hyperlink{classScheduler_a006b3cc413e969628a2115040727afbb}{was\+Successful}} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns whether all submissions were fully assigned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Orchestrates Max-\/\+Flow execution and interprets the results. 
+
+On construction\+: resets flows → runs Edmonds–\+Karp → extracts assignments. Call \doxylink{classScheduler_ae9fca17a227c2bf7050735da5327310a}{run\+Risk\+Analysis(k)} afterward to identify critical reviewers. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classScheduler_a756c7b183ec3e90f23f72584d04dcf7d}\label{classScheduler_a756c7b183ec3e90f23f72584d04dcf7d} 
+\index{Scheduler@{Scheduler}!Scheduler@{Scheduler}}
+\index{Scheduler@{Scheduler}!Scheduler@{Scheduler}}
+\doxysubsubsection{\texorpdfstring{Scheduler()}{Scheduler()}}
+{\footnotesize\ttfamily Scheduler\+::\+Scheduler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classFlowNetwork}{Flow\+Network}} \&}]{flow\+Network,  }\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&}]{submissions,  }\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&}]{reviewers }\end{DoxyParamCaption})}
+
+
+
+Constructs the \doxylink{classScheduler}{Scheduler}, runs Max-\/\+Flow and extracts assignments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flow\+Network} & Reference to the pre-\/built \doxylink{classFlowNetwork}{Flow\+Network} (must outlive this object). \\
+\hline
+{\em submissions} & Map of submission ID → \doxylink{structSubmission}{Submission}. \\
+\hline
+{\em reviewers} & Map of reviewer ID → \doxylink{structReviewer}{Reviewer}. @complexity O(V·\+E²) — dominated by Edmonds–\+Karp. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classScheduler_afbf9239be4c3dfb2c0379a5b1ead30ef}\label{classScheduler_afbf9239be4c3dfb2c0379a5b1ead30ef} 
+\index{Scheduler@{Scheduler}!getAssignments@{getAssignments}}
+\index{getAssignments@{getAssignments}!Scheduler@{Scheduler}}
+\doxysubsubsection{\texorpdfstring{getAssignments()}{getAssignments()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structAssignment}{Assignment}} $>$ Scheduler\+::get\+Assignments (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the list of successful reviewer–submission assignments. 
+
+\begin{DoxyReturn}{Returns}
+Vector of \doxylink{structAssignment}{Assignment} structs. 
+\end{DoxyReturn}
+\Hypertarget{classScheduler_a24fc56e5ea84ebb4afd43de993c5cfa8}\label{classScheduler_a24fc56e5ea84ebb4afd43de993c5cfa8} 
+\index{Scheduler@{Scheduler}!getMissingReviews@{getMissingReviews}}
+\index{getMissingReviews@{getMissingReviews}!Scheduler@{Scheduler}}
+\doxysubsubsection{\texorpdfstring{getMissingReviews()}{getMissingReviews()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structFailedAssignment}{Failed\+Assignment}} $>$ Scheduler\+::get\+Missing\+Reviews (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the list of submissions that could not be fully assigned. 
+
+\begin{DoxyReturn}{Returns}
+Vector of \doxylink{structFailedAssignment}{Failed\+Assignment} structs. 
+\end{DoxyReturn}
+\Hypertarget{classScheduler_aa606cf1f26f9a34ad932e651a6c58edb}\label{classScheduler_aa606cf1f26f9a34ad932e651a6c58edb} 
+\index{Scheduler@{Scheduler}!getRiskyReviewers@{getRiskyReviewers}}
+\index{getRiskyReviewers@{getRiskyReviewers}!Scheduler@{Scheduler}}
+\doxysubsubsection{\texorpdfstring{getRiskyReviewers()}{getRiskyReviewers()}}
+{\footnotesize\ttfamily std\+::set$<$ \mbox{\hyperlink{classEdge}{int}} $>$ Scheduler\+::get\+Risky\+Reviewers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the set of reviewer IDs whose removal causes assignment failure. 
+
+\begin{DoxyReturn}{Returns}
+Set of risky reviewer IDs. 
+\end{DoxyReturn}
+\Hypertarget{classScheduler_ae9fca17a227c2bf7050735da5327310a}\label{classScheduler_ae9fca17a227c2bf7050735da5327310a} 
+\index{Scheduler@{Scheduler}!runRiskAnalysis@{runRiskAnalysis}}
+\index{runRiskAnalysis@{runRiskAnalysis}!Scheduler@{Scheduler}}
+\doxysubsubsection{\texorpdfstring{runRiskAnalysis()}{runRiskAnalysis()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} Scheduler\+::run\+Risk\+Analysis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{int}}}]{k }\end{DoxyParamCaption})}
+
+
+
+Simulates reviewer removals to identify critical reviewers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & Risk level\+: 0 = disabled; 1 = single-\/reviewer removal analysis. @complexity O(R·\+V·\+E²) for k == 1. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classScheduler_a006b3cc413e969628a2115040727afbb}\label{classScheduler_a006b3cc413e969628a2115040727afbb} 
+\index{Scheduler@{Scheduler}!wasSuccessful@{wasSuccessful}}
+\index{wasSuccessful@{wasSuccessful}!Scheduler@{Scheduler}}
+\doxysubsubsection{\texorpdfstring{wasSuccessful()}{wasSuccessful()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{bool}} Scheduler\+::was\+Successful (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns whether all submissions were fully assigned. 
+
+\begin{DoxyReturn}{Returns}
+true if successful, false if any submission is under-\/reviewed. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Project1\+Sample\+Datasets/src/\mbox{\hyperlink{Scheduler_8h}{Scheduler.\+h}}\item 
+Project1\+Sample\+Datasets/src/\mbox{\hyperlink{Scheduler_8cpp}{Scheduler.\+cpp}}\end{DoxyCompactItemize}
