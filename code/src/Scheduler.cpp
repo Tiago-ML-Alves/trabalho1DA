@@ -1,5 +1,18 @@
+/**
+* @file Scheduler.cpp
+ * @brief Implementation of the Scheduler class.
+ */
+
 #include "Scheduler.h"
 #include "EdmondsKarp.h"
+
+/**
+ * @brief Constructs the Scheduler, runs Max-Flow and extracts assignments.
+ * @param flowNetwork Reference to the pre-built FlowNetwork (must outlive this object).
+ * @param submissions Map of submission ID → Submission.
+ * @param reviewers   Map of reviewer ID → Reviewer.
+ * @complexity O(V·E²) — dominated by Edmonds–Karp.
+ */
 
 Scheduler::Scheduler(FlowNetwork& flowNetwork, const std::map<int, Submission>& submissions, const std::map<int, Reviewer>& reviewers)
 	: flowNetwork_(flowNetwork), submissions_(submissions), reviewers_(reviewers), successful_(true)
@@ -8,6 +21,11 @@ Scheduler::Scheduler(FlowNetwork& flowNetwork, const std::map<int, Submission>& 
 	edmondsKarp(&flowNetwork.getGraph(), flowNetwork.getSource(), flowNetwork.getSink());
 	extractAssignments();
 }
+
+/**
+ * @brief Traverses the flow graph and populates assignments_ and missingReviews_.
+ * @complexity O(S · R)
+ */
 
 void Scheduler::extractAssignments()
 {
@@ -36,6 +54,14 @@ void Scheduler::extractAssignments()
 	}
 	successful_ = checkSuccessful();
 }
+
+/**
+ * @brief Counts how many reviewers were assigned to vertex @p v.
+ * @param v Submission vertex.
+ * @return Number of edges to REVIEWER vertices with flow == 1.
+ * @complexity O(deg(v))
+ */
+
 int Scheduler::countAssignedReviewers(Vertex<NodeInfo>* v) const
 {
 	int count = 0;
@@ -44,6 +70,12 @@ int Scheduler::countAssignedReviewers(Vertex<NodeInfo>* v) const
 			count++;
 	return count;
 }
+
+/**
+ * @brief Checks whether every submission has at least minReviewsPerSubmission assigned reviewers.
+ * @return true if all submissions are fully covered, false otherwise.
+ * @complexity O(S · R)
+ */
 
 bool Scheduler::checkSuccessful()
 {
@@ -61,6 +93,13 @@ bool Scheduler::checkSuccessful()
 	}
 	return true;
 }
+
+/**
+ * @brief Simulates reviewer removals to identify critical reviewers.
+ * @param k Risk level: 0 = disabled; 1 = single-reviewer removal analysis.
+ * @complexity O(R·V·E²) for k == 1.
+ */
+
 void Scheduler::runRiskAnalysis(int k){
 
 	if (k == 0) return;
@@ -97,22 +136,40 @@ void Scheduler::runRiskAnalysis(int k){
 	}
 }
 
-
+/**
+ * @brief Returns the list of successful reviewer–submission assignments.
+ * @return Vector of Assignment structs.
+ */
 
 std::vector<Assignment> Scheduler::getAssignments() const
 {
 	return assignments_;
 }
 
+/**
+ * @brief Returns the set of reviewer IDs whose removal causes assignment failure.
+ * @return Set of risky reviewer IDs.
+ */
+
 std::set<int> Scheduler::getRiskyReviewers() const
 {
 	return riskyReviewers_;
 }
 
+/**
+ * @brief Returns whether all submissions were fully assigned.
+ * @return true if successful, false if any submission is under-reviewed.
+ */
+
 bool Scheduler::wasSuccessful() const
 {
 	return successful_;
 }
+
+/**
+ * @brief Returns the list of submissions that could not be fully assigned.
+ * @return Vector of FailedAssignment structs.
+ */
 
 std::vector<FailedAssignment> Scheduler::getMissingReviews() const
 {

@@ -27,6 +27,7 @@
  *       so that inserted entries are visible to the caller.  (Previous version
  *       passed them by value — a bug that caused all parsed data to be lost.)
  */
+
 void Parser::parse(const std::string& filename,
                    std::map<int, Submission>& submissions,
                    std::map<int, Reviewer>&   reviewers,
@@ -75,6 +76,13 @@ void Parser::parse(const std::string& filename,
 // Private helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * @brief Parses a single CSV line from the #Submissions section.
+ * @param line    Raw CSV line to parse.
+ * @param submissions Map to insert the parsed Submission into.
+ * @complexity O(F) where F is the number of comma-separated fields.
+ */
+
 void Parser::parseSubmissions(const std::string& line,
                               std::map<int, Submission>& submissions)
 {
@@ -119,6 +127,13 @@ void Parser::parseSubmissions(const std::string& line,
     submissions[sub.id] = sub;
 }
 
+/**
+ * @brief Parses a single CSV line from the #Reviewers section.
+ * @param line     Raw CSV line to parse.
+ * @param reviewers Map to insert the parsed Reviewer into.
+ * @complexity O(F)
+ */
+
 void Parser::parseReviewers(const std::string& line,
                             std::map<int, Reviewer>& reviewers)
 {
@@ -162,6 +177,13 @@ void Parser::parseReviewers(const std::string& line,
     reviewers[rev.id] = rev;
 }
 
+/**
+ * @brief Parses a single key=value line from the #Parameters section.
+ * @param line       Raw CSV line with format "KeyName, value".
+ * @param parameters Parameters struct to update.
+ * @complexity O(1) — fixed number of recognised keys.
+ */
+
 void Parser::parseParameters(const std::string& line, Parameters& parameters)
 {
     std::istringstream ss(line);
@@ -202,6 +224,13 @@ void Parser::parseParameters(const std::string& line, Parameters& parameters)
     else
         std::cerr << "warning (parameters): unrecognised key \"" << name << "\"" << std::endl;
 }
+
+/**
+ * @brief Parses a single key=value line from the #Control section.
+ * @param line    Raw CSV line with format "KeyName, value".
+ * @param control Control struct to update.
+ * @complexity O(1) — fixed number of recognised keys.
+ */
 
 void Parser::parseControl(const std::string& line, Control& control)
 {

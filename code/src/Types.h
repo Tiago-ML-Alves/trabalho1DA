@@ -1,8 +1,18 @@
+/**
+* @file Types.h
+ * @brief Shared data types, structs and enumerations used across the project.
+ */
+
 #ifndef PROJECT1_TYPES_H
 #define PROJECT1_TYPES_H
 #include <string>
 
 enum class VertexType;
+
+/**
+ * @struct Assignment
+ * @brief Represents a successful reviewer-to-submission assignment.
+ */
 
 struct Assignment
 {
@@ -10,12 +20,29 @@ struct Assignment
     int reviewerID;
     int matchedTopic;
 };
+
+/**
+ * @struct FailedAssignment
+ * @brief Represents a submission that could not be fully assigned.
+ *
+ * Stores the submission ID, its primary domain, and how many reviews are still missing.
+ */
+
 struct FailedAssignment
 {
     int id;
     int primaryDomain;
     int missingReviews;
 };
+
+/**
+ * @struct Submission
+ * @brief A scientific paper submitted to the conference.
+ *
+ * Each submission has a unique numeric ID, metadata (title, authors, e-mail)
+ * and one mandatory primary topic plus an optional secondary topic (-1 if absent).
+ */
+
 struct Submission
 {
     int id;
@@ -26,6 +53,12 @@ struct Submission
     int secondaryTopic;
 };
 
+/**
+ * @struct Reviewer
+ * @brief A conference reviewer with one or two areas of expertise.
+ * @note secondaryExpertise is -1 when the reviewer has only one area.
+ */
+
 struct Reviewer
 {
     int id;
@@ -34,6 +67,11 @@ struct Reviewer
     int primaryExpertise;
     int secondaryExpertise;
 };
+
+/**
+ * @struct Parameters
+ * @brief Numeric parameters read from the #Parameters section of the input CSV.
+ */
 
 struct Parameters
 {
@@ -45,12 +83,22 @@ struct Parameters
     int secondarySubmissionDomain;
 };
 
+/**
+ * @struct Control
+ * @brief Runtime control flags read from the #Control section of the input CSV.
+ */
+
 struct Control
 {
     int generateAssignments;
     int riskAnalysis;
     std::string outputFileName = "output.csv";
 };
+
+/**
+ * @enum VertexType
+ * @brief Identifies the role of a vertex inside the flow network.
+ */
 
 enum class VertexType
 {
@@ -59,6 +107,12 @@ enum class VertexType
     REVIEWER,
     SINK
 };
+
+/**
+ * @struct NodeInfo
+ * @brief Information stored at each vertex of the flow-network graph.
+ */
+
 struct NodeInfo
 {
     int id;
@@ -69,6 +123,11 @@ struct NodeInfo
         return id == other.id && type == other.type;
     }
 };
+
+/**
+ * @enum Section
+ * @brief Tracks which CSV section the parser is currently reading.
+ */
 
 enum class Section
 {
