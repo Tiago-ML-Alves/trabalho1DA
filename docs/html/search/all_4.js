@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['failedassignment_0',['FailedAssignment',['../structFailedAssignment.html',1,'']]],
-  ['findaugmentingpath_1',['findAugmentingPath',['../EdmondsKarp_8h.html#a7ef59ca73ad539b2405ee93bb9e1b8de',1,'EdmondsKarp.h']]],
-  ['findminresidualalongpath_2',['findMinResidualAlongPath',['../EdmondsKarp_8h.html#a5d9eaea95963d260904788f49c789a07',1,'EdmondsKarp.h']]],
-  ['flownetwork_3',['flownetwork',['../classFlowNetwork.html',1,'FlowNetwork'],['../classFlowNetwork.html#af7eb68e9985860ad23a97df8a3a8b28c',1,'FlowNetwork::FlowNetwork()']]],
-  ['flownetwork_2ecpp_4',['FlowNetwork.cpp',['../FlowNetwork_8cpp.html',1,'']]],
-  ['flownetwork_2eh_5',['FlowNetwork.h',['../FlowNetwork_8h.html',1,'']]]
+  ['edge_0',['edge',['../classEdge.html',1,'Edge&lt; T &gt;'],['../classEdge.html#ab976213419283ed754f42f57b195a288',1,'Edge::Edge()']]],
+  ['edmondskarp_1',['edmondsKarp',['../EdmondsKarp_8h.html#aee845b901c5d07f1257924584430e6f4',1,'EdmondsKarp.h']]],
+  ['edmondskarp_2eh_2',['EdmondsKarp.h',['../EdmondsKarp_8h.html',1,'']]]
 ];

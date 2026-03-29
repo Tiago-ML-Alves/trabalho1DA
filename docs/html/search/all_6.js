@@ -1,8 +1,28 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['matchingtopic_2',['matchingTopic',['../classFlowNetwork.html#a6ee33b3932632fb03153cc08dabad494',1,'FlowNetwork']]],
-  ['mutablepriorityqueue_3',['MutablePriorityQueue',['../classMutablePriorityQueue.html',1,'']]],
-  ['mutablepriorityqueue_2eh_4',['MutablePriorityQueue.h',['../MutablePriorityQueue_8h.html',1,'']]]
+  ['getadj_0',['getAdj',['../classVertex.html#a0010a7d0b7db1bb81dd2ebb1ffae650a',1,'Vertex']]],
+  ['getassignments_1',['getAssignments',['../classScheduler.html#afbf9239be4c3dfb2c0379a5b1ead30ef',1,'Scheduler']]],
+  ['getdest_2',['getDest',['../classEdge.html#a9a2de066dff8513dd788d553fc1d0c81',1,'Edge']]],
+  ['getdist_3',['getDist',['../classVertex.html#a01e90e3cdb2ee11dd3b1d593c8207382',1,'Vertex']]],
+  ['getflow_4',['getFlow',['../classEdge.html#a75458cfc838ca5aee5c34cb9f03b5647',1,'Edge']]],
+  ['getgraph_5',['getGraph',['../classFlowNetwork.html#a81b144a39ba2c166972765c84aa4fa68',1,'FlowNetwork']]],
+  ['getincoming_6',['getIncoming',['../classVertex.html#a361d7d0459d37aead6401d6af9f81f0a',1,'Vertex']]],
+  ['getindegree_7',['getIndegree',['../classVertex.html#a25642875df28caa2195bad5a9ae44683',1,'Vertex']]],
+  ['getinfo_8',['getInfo',['../classVertex.html#a48eae2f7af2362634adab02b7b2dbec6',1,'Vertex']]],
+  ['getlow_9',['getLow',['../classVertex.html#a3b8e12b4d9805979321212dd6db05961',1,'Vertex']]],
+  ['getmissingreviews_10',['getMissingReviews',['../classScheduler.html#a24fc56e5ea84ebb4afd43de993c5cfa8',1,'Scheduler']]],
+  ['getnum_11',['getNum',['../classVertex.html#ab2916c006fa35b918910a2232095e785',1,'Vertex']]],
+  ['getnumvertex_12',['getNumVertex',['../classGraph.html#a0853eac15cdf0f06d63f4b8a7820ec71',1,'Graph']]],
+  ['getorig_13',['getOrig',['../classEdge.html#a40fc1470c5339203defca19b67c2535b',1,'Edge']]],
+  ['getparameters_14',['getParameters',['../classFlowNetwork.html#a2550d6414d288c0b869d20fd5fa7e2e3',1,'FlowNetwork']]],
+  ['getpath_15',['getPath',['../classVertex.html#a15e4ff95fba2bb5970a6551137ceb950',1,'Vertex']]],
+  ['getreverse_16',['getReverse',['../classEdge.html#af0a900f3006e47b9f363df7429298eeb',1,'Edge']]],
+  ['getriskyreviewers_17',['getRiskyReviewers',['../classScheduler.html#aa606cf1f26f9a34ad932e651a6c58edb',1,'Scheduler']]],
+  ['getsink_18',['getSink',['../classFlowNetwork.html#ae7d51bd4af54708f05cdc4ec70ef3186',1,'FlowNetwork']]],
+  ['getsource_19',['getSource',['../classFlowNetwork.html#aa4d5a04e0ebafbc4c5dcbd1e55a5d9c3',1,'FlowNetwork']]],
+  ['getvertexset_20',['getVertexSet',['../classGraph.html#a41624b03fcb6bd29e4df574a1ec58541',1,'Graph']]],
+  ['getweight_21',['getWeight',['../classEdge.html#a3df378e283d6c8be5be4170ac8d7f4e8',1,'Edge']]],
+  ['graph_22',['Graph',['../classGraph.html',1,'']]],
+  ['graph_2eh_23',['Graph.h',['../Graph_8h.html',1,'']]],
+  ['graph_3c_20nodeinfo_20_3e_24',['Graph&lt; NodeInfo &gt;',['../classGraph.html',1,'']]]
 ];

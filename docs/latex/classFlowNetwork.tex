@@ -12,7 +12,7 @@ Builds a Max-\/\+Flow network from submissions and reviewers.
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classFlowNetwork_af7eb68e9985860ad23a97df8a3a8b28c}{Flow\+Network}} (\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&\mbox{\hyperlink{classEdge}{submissions}}, \mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&\mbox{\hyperlink{classEdge}{reviewers}}, \mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structParameters}{Parameters}} \&\mbox{\hyperlink{classEdge}{parameters}}, \mbox{\hyperlink{classEdge}{int}} generate\+Assignments)
+\mbox{\hyperlink{classFlowNetwork_af7eb68e9985860ad23a97df8a3a8b28c}{Flow\+Network}} (\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std\+::map}}$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&\mbox{\hyperlink{classEdge}{submissions}}, \mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std\+::map}}$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&\mbox{\hyperlink{classEdge}{reviewers}}, \mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structParameters}{Parameters}} \&\mbox{\hyperlink{classEdge}{parameters}}, \mbox{\hyperlink{classEdge}{int}} generate\+Assignments)
 \begin{DoxyCompactList}\small\item\em Constructs the flow network and builds the graph immediately. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classGraph}{Graph}}$<$ \mbox{\hyperlink{structNodeInfo}{Node\+Info}} $>$ \& \mbox{\hyperlink{classFlowNetwork_a81b144a39ba2c166972765c84aa4fa68}{get\+Graph}} ()
 \begin{DoxyCompactList}\small\item\em Returns a reference to the flow network graph. \end{DoxyCompactList}\item 
@@ -20,7 +20,7 @@ Builds a Max-\/\+Flow network from submissions and reviewers.
 \begin{DoxyCompactList}\small\item\em Returns the \doxylink{structNodeInfo}{Node\+Info} identifying the source vertex. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classEdge}{int}} \mbox{\hyperlink{classFlowNetwork_a6ee33b3932632fb03153cc08dabad494}{matching\+Topic}} (\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structSubmission}{Submission}} \&\mbox{\hyperlink{classEdge}{sub}}, \mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structReviewer}{Reviewer}} \&\mbox{\hyperlink{classEdge}{rev}}) \mbox{\hyperlink{classEdge}{const}}
 \begin{DoxyCompactList}\small\item\em Returns the matched topic ID for a compatible pair, or -\/1 if none. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classFlowNetwork_aa27fea82214258b52db70452e07228a1}{build\+Network}} (\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&\mbox{\hyperlink{classEdge}{submissions}}, \mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&\mbox{\hyperlink{classEdge}{reviewers}})
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classFlowNetwork_aa27fea82214258b52db70452e07228a1}{build\+Network}} (\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std\+::map}}$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&\mbox{\hyperlink{classEdge}{submissions}}, \mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std\+::map}}$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&\mbox{\hyperlink{classEdge}{reviewers}})
 \begin{DoxyCompactList}\small\item\em Populates the graph with vertices and edges for the flow network. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structNodeInfo}{Node\+Info}} \mbox{\hyperlink{classFlowNetwork_ae7d51bd4af54708f05cdc4ec70ef3186}{get\+Sink}} () \mbox{\hyperlink{classEdge}{const}}
 \begin{DoxyCompactList}\small\item\em Returns the \doxylink{structNodeInfo}{Node\+Info} identifying the sink vertex. \end{DoxyCompactList}\item 
@@ -34,7 +34,7 @@ Builds a Max-\/\+Flow network from submissions and reviewers.
 Network topology\+: SOURCE ──(min\+Reviews)──► \mbox{[}\doxylink{structSubmission}{Submission}\mbox{]} ──(1)──► \mbox{[}\doxylink{structReviewer}{Reviewer}\mbox{]} ──(max\+Reviews)──► SINK
 
 \begin{DoxySeeAlso}{See also}
-Edmonds\+Karp.\+h 
+\doxylink{classEdge_ab976213419283ed754f42f57b195a288}{Edmonds\+Karp.\+h} 
 
 \doxylink{classScheduler}{Scheduler} 
 \end{DoxySeeAlso}
@@ -45,7 +45,7 @@ Edmonds\+Karp.\+h
 \index{FlowNetwork@{FlowNetwork}!FlowNetwork@{FlowNetwork}}
 \index{FlowNetwork@{FlowNetwork}!FlowNetwork@{FlowNetwork}}
 \doxysubsubsection{\texorpdfstring{FlowNetwork()}{FlowNetwork()}}
-{\footnotesize\ttfamily Flow\+Network\+::\+Flow\+Network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&}]{submissions,  }\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&}]{reviewers,  }\item[{\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structParameters}{Parameters}} \&}]{parameters,  }\item[{\mbox{\hyperlink{classEdge}{int}}}]{generate\+Assignments }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Flow\+Network\+::\+Flow\+Network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std\+::map}}$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&}]{submissions,  }\item[{\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std\+::map}}$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&}]{reviewers,  }\item[{\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{structParameters}{Parameters}} \&}]{parameters,  }\item[{\mbox{\hyperlink{classEdge}{int}}}]{generate\+Assignments }\end{DoxyParamCaption})}
 
 
 
@@ -69,7 +69,7 @@ Constructs the flow network and builds the graph immediately.
 \index{FlowNetwork@{FlowNetwork}!buildNetwork@{buildNetwork}}
 \index{buildNetwork@{buildNetwork}!FlowNetwork@{FlowNetwork}}
 \doxysubsubsection{\texorpdfstring{buildNetwork()}{buildNetwork()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} Flow\+Network\+::build\+Network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&}]{submissions,  }\item[{\mbox{\hyperlink{classEdge}{const}} std\+::map$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&}]{reviewers }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} Flow\+Network\+::build\+Network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std\+::map}}$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structSubmission}{Submission}} $>$ \&}]{submissions,  }\item[{\mbox{\hyperlink{classEdge}{const}} \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std\+::map}}$<$ \mbox{\hyperlink{classEdge}{int}}, \mbox{\hyperlink{structReviewer}{Reviewer}} $>$ \&}]{reviewers }\end{DoxyParamCaption})}
 
 
 

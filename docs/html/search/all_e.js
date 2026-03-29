@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wassuccessful_0',['wasSuccessful',['../classScheduler.html#a006b3cc413e969628a2115040727afbb',1,'Scheduler']]],
-  ['write_1',['write',['../classOutput.html#a1fb54b3c3282848dfed83943a34e5d85',1,'Output']]]
+  ['testandvisit_0',['testAndVisit',['../EdmondsKarp_8h.html#acb329d42a9a476d072878ef35a6a343c',1,'EdmondsKarp.h']]],
+  ['types_2eh_1',['Types.h',['../Types_8h.html',1,'']]]
 ];

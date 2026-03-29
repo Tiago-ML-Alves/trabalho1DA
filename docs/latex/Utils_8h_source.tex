@@ -10,7 +10,7 @@
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <algorithm>}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
 \DoxyCodeLine{00008\ }
-\DoxyCodeLine{00014\ std::string\ trim(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classEdge}{string1}})}
+\DoxyCodeLine{00014\ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::string}}\ trim(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::string}}\&\ \mbox{\hyperlink{classEdge}{string1}})}
 \DoxyCodeLine{00015\ \{}
 \DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classEdge}{string1}}.empty())\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
 \DoxyCodeLine{00017\ }
@@ -18,7 +18,7 @@
 \DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classEdge}{firstPos}}\ ==\ std::string::npos)\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
 \DoxyCodeLine{00020\ }
 \DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classEdge}{lastPos}}\ =\ \mbox{\hyperlink{classEdge}{string1}}.find\_last\_not\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)r\(\backslash\)n\(\backslash\)t"{}});\ \ \ \textcolor{comment}{//\ ←\ also\ trim\ \(\backslash\)r!}}
-\DoxyCodeLine{00022\ \ \ \ \ std::string\ \mbox{\hyperlink{classEdge}{trimmed}}\ =\ \mbox{\hyperlink{classEdge}{string1}}.substr(\mbox{\hyperlink{classEdge}{firstPos}},\ \mbox{\hyperlink{classEdge}{lastPos}}\ -\/\ \mbox{\hyperlink{classEdge}{firstPos}}\ +\ 1);}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::string}}\ \mbox{\hyperlink{classEdge}{trimmed}}\ =\ \mbox{\hyperlink{classEdge}{string1}}.substr(\mbox{\hyperlink{classEdge}{firstPos}},\ \mbox{\hyperlink{classEdge}{lastPos}}\ -\/\ \mbox{\hyperlink{classEdge}{firstPos}}\ +\ 1);}
 \DoxyCodeLine{00023\ }
 \DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classEdge}{trimmed}}.front()\ ==\ \textcolor{charliteral}{'"{}'}\ \&\&\ \mbox{\hyperlink{classEdge}{trimmed}}.back()\ ==\ \textcolor{charliteral}{'"{}'})}
 \DoxyCodeLine{00025\ \ \ \ \ \{}

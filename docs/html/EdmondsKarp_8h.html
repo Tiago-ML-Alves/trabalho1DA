@@ -82,7 +82,7 @@ $(function() {
 <p>Implementation of the Edmonds–Karp Max-Flow algorithm.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;queue&gt;</code><br />
-<code>#include &quot;Graph.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="Graph_8h_source.html">Graph.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for EdmondsKarp.h:</div>
 <div class="dyncontent">
@@ -99,7 +99,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:acb329d42a9a476d072878ef35a6a343c" id="r_acb329d42a9a476d072878ef35a6a343c"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classEdge.html">class</a> <a class="el" href="classEdge.html">T</a> &gt; </td></tr>
-<tr class="memitem:acb329d42a9a476d072878ef35a6a343c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="EdmondsKarp_8h.html#acb329d42a9a476d072878ef35a6a343c">testAndVisit</a> (std::queue&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="classEdge.html">T</a> &gt; * &gt; &amp;<a class="el" href="classEdge.html">q</a>, <a class="el" href="classEdge.html">Edge</a>&lt; <a class="el" href="classEdge.html">T</a> &gt; *<a class="el" href="classEdge.html">e</a>, <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="classEdge.html">T</a> &gt; *<a class="el" href="classEdge.html">w</a>, <a class="el" href="classEdge.html">double</a> <a class="el" href="classEdge.html">residual</a>)</td></tr>
+<tr class="memitem:acb329d42a9a476d072878ef35a6a343c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="EdmondsKarp_8h.html#acb329d42a9a476d072878ef35a6a343c">testAndVisit</a> (<a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::queue</a>&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="classEdge.html">T</a> &gt; * &gt; &amp;<a class="el" href="classEdge.html">q</a>, <a class="el" href="classEdge.html">Edge</a>&lt; <a class="el" href="classEdge.html">T</a> &gt; *<a class="el" href="classEdge.html">e</a>, <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="classEdge.html">T</a> &gt; *<a class="el" href="classEdge.html">w</a>, <a class="el" href="classEdge.html">double</a> <a class="el" href="classEdge.html">residual</a>)</td></tr>
 <tr class="memdesc:acb329d42a9a476d072878ef35a6a343c"><td class="mdescLeft">&#160;</td><td class="mdescRight">BFS helper: enqueues vertex <code>w</code> if unvisited and residual capacity &gt; 0.  <br /></td></tr>
 <tr class="separator:acb329d42a9a476d072878ef35a6a343c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ef59ca73ad539b2405ee93bb9e1b8de" id="r_a7ef59ca73ad539b2405ee93bb9e1b8de"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classEdge.html">class</a> <a class="el" href="classEdge.html">T</a> &gt; </td></tr>
@@ -374,7 +374,7 @@ template&lt;<a class="el" href="classEdge.html">class</a> <a class="el" href="cl
         <tr>
           <td class="memname"><a class="el" href="classEdge.html">void</a> testAndVisit </td>
           <td>(</td>
-          <td class="paramtype">std::queue&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="classEdge.html">T</a> &gt; * &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::queue</a>&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="classEdge.html">T</a> &gt; * &gt; &amp;&#160;</td>
           <td class="paramname"><em>q</em>, </td>
         </tr>
         <tr>
@@ -413,7 +413,7 @@ template&lt;<a class="el" href="classEdge.html">class</a> <a class="el" href="cl
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">q</td><td>BFS queue. </td></tr>
-    <tr><td class="paramname">e</td><td><a class="el" href="classEdge.html">Edge</a> being traversed. </td></tr>
+    <tr><td class="paramname">e</td><td><a class="el" href="classEdge.html" title="Represents a directed weighted edge with optional flow and reverse pointer.">Edge</a> being traversed. </td></tr>
     <tr><td class="paramname">w</td><td>Candidate vertex. </td></tr>
     <tr><td class="paramname">residual</td><td>Available residual capacity. @complexity O(1) </td></tr>
   </table>

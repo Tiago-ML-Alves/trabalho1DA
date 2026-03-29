@@ -110,9 +110,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structSubmission.html">   46</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structSubmission.html">Submission</a></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">int</span> id;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::string title;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::string authorName;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::string email;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_function" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::string</a> title;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_function" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::string</a> authorName;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_function" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::string</a> email;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">int</span> primaryTopic;</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> secondaryTopic;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
@@ -122,8 +122,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structReviewer.html">   62</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structReviewer.html">Reviewer</a></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>{</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">int</span> id;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    std::string name;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    std::string email;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_function" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::string</a> name;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_function" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::string</a> email;</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">int</span> primaryExpertise;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">int</span> secondaryExpertise;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>};</div>
@@ -146,7 +146,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>{</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">int</span> generateAssignments;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">int</span> riskAnalysis;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    std::string outputFileName = <span class="stringliteral">&quot;output.csv&quot;</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <a class="code hl_function" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::string</a> outputFileName = <span class="stringliteral">&quot;output.csv&quot;</span>;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>};</div>
 </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
@@ -188,7 +188,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aTypes_8h_html_aa2bc2fd5a40cdb0c40963e6fe6a24cce"><div class="ttname"><a href="Types_8h.html#aa2bc2fd5a40cdb0c40963e6fe6a24cce">Section</a></div><div class="ttdeci">Section</div><div class="ttdoc">Tracks which CSV section the parser is currently reading.</div><div class="ttdef"><b>Definition</b> Types.h:133</div></div>
 <div class="ttc" id="aTypes_8h_html_afa099a55c5746eff5a0e1ffc04f53cc0"><div class="ttname"><a href="Types_8h.html#afa099a55c5746eff5a0e1ffc04f53cc0">VertexType</a></div><div class="ttdeci">VertexType</div><div class="ttdoc">Identifies the role of a vertex inside the flow network.</div><div class="ttdef"><b>Definition</b> Types.h:104</div></div>
-<div class="ttc" id="aclassEdge_html"><div class="ttname"><a href="classEdge.html">Edge</a></div><div class="ttdef"><b>Definition</b> Graph.h:75</div></div>
+<div class="ttc" id="aclassEdge_html"><div class="ttname"><a href="classEdge.html">Edge</a></div><div class="ttdoc">Represents a directed weighted edge with optional flow and reverse pointer.</div><div class="ttdef"><b>Definition</b> Graph.h:103</div></div>
+<div class="ttc" id="aclassEdge_html_ab976213419283ed754f42f57b195a288"><div class="ttname"><a href="classEdge.html#ab976213419283ed754f42f57b195a288">Edge::Edge</a></div><div class="ttdeci">Edge(Vertex&lt; T &gt; *orig, Vertex&lt; T &gt; *dest, double w)</div><div class="ttdoc">Constructs an edge from orig to dest with weight w.</div><div class="ttdef"><b>Definition</b> Graph.h:394</div></div>
 <div class="ttc" id="astructAssignment_html"><div class="ttname"><a href="structAssignment.html">Assignment</a></div><div class="ttdoc">Represents a successful reviewer-to-submission assignment.</div><div class="ttdef"><b>Definition</b> Types.h:18</div></div>
 <div class="ttc" id="astructControl_html"><div class="ttname"><a href="structControl.html">Control</a></div><div class="ttdoc">Runtime control flags read from the Control section of the input CSV.</div><div class="ttdef"><b>Definition</b> Types.h:92</div></div>
 <div class="ttc" id="astructFailedAssignment_html"><div class="ttname"><a href="structFailedAssignment.html">FailedAssignment</a></div><div class="ttdoc">Represents a submission that could not be fully assigned.</div><div class="ttdef"><b>Definition</b> Types.h:32</div></div>
