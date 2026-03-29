@@ -25,3 +25,4 @@ Release/
 # Temporary files
 *.tmp
 *.log
+*.DS_STORE

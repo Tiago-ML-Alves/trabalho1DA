@@ -20,9 +20,7 @@
 
 template <class T>
 void testAndVisit(std::queue< Vertex<T>*> &q, Edge<T> *e, Vertex<T> *w, double residual) {
-    // Check if the vertex 'w' is not visited and there is residual capacity
     if (! w->isVisited() && residual > 0) {
-        // Mark 'w' as visited, set the path through which it was reached, and enqueue it
         w->setVisited(true);
         w->setPath(e);
         q.push(w);
@@ -68,7 +66,6 @@ bool findAugmentingPath(Graph<T> *g, Vertex<T> *s, Vertex<T> *t) {
     return t->isVisited();
     }
 
-    // Return true if a path to the target is found, false otherwise
 
 /**
  * @brief Computes the bottleneck capacity along the augmenting path.
@@ -79,7 +76,6 @@ bool findAugmentingPath(Graph<T> *g, Vertex<T> *s, Vertex<T> *t) {
  * @complexity O(V)
  */
 
-// Function to find the minimum residual capacity along the augmenting path
 template <class T>
 double findMinResidualAlongPath(Vertex<T> *source, Vertex<T> *sink) {
     double bottleneck = INF;
@@ -99,7 +95,6 @@ double findMinResidualAlongPath(Vertex<T> *source, Vertex<T> *sink) {
             cur = e->getDest();
         }
     }
-    // Return the minimum residual capacity
     return bottleneck;
 }
 
@@ -112,7 +107,6 @@ double findMinResidualAlongPath(Vertex<T> *source, Vertex<T> *sink) {
  * @complexity O(V)
  */
 
-// Function to augment flow along the augmenting path with the given flow value
 template <class T>
 void augmentFlowAlongPath(Vertex<T> *source, Vertex<T> *sink, double f) {
     Vertex<T>* cur = sink;
@@ -158,7 +152,6 @@ void resetFlow(Graph<T>* g)
  * @complexity O(V·E²)
  */
 
-// Main function implementing the Edmonds-Karp algorithm
 template <class T>
 void edmondsKarp(Graph<T> *g, NodeInfo source, NodeInfo target) {
     Vertex<T>* s = g->findVertex(source);
