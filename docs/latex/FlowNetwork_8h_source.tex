@@ -1,0 +1,34 @@
+\doxysection{Flow\+Network.\+h}
+\hypertarget{FlowNetwork_8h_source}{}\label{FlowNetwork_8h_source}\index{Project1SampleDatasets/src/FlowNetwork.h@{Project1SampleDatasets/src/FlowNetwork.h}}
+\mbox{\hyperlink{FlowNetwork_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ alex\ on\ 3/20/26.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ PROJECT1\_FLOWNETWORK\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ PROJECT1\_FLOWNETWORK\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Graph.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Types_8h}{Types.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFlowNetwork}{FlowNetwork}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ generateAssignments\_;}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classGraph}{Graph<NodeInfo>}}\ graph\_;}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{structParameters}{Parameters}}\ parameters\_;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ topicsMatch(\textcolor{keyword}{const}\ \mbox{\hyperlink{structSubmission}{Submission}}\&\ sub,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structReviewer}{Reviewer}}\&\ rev)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classFlowNetwork}{FlowNetwork}}(\textcolor{keyword}{const}\ std::map<int,\ Submission>\&\ submissions,\ \textcolor{keyword}{const}\ std::map<int,\ Reviewer>\&\ reviewers,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structParameters}{Parameters}}\&\ parameters,\ \textcolor{keywordtype}{int}\ generateAssignments);}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classGraph}{Graph<NodeInfo>}}\&\ \mbox{\hyperlink{classFlowNetwork_a81b144a39ba2c166972765c84aa4fa68}{getGraph}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{structNodeInfo}{NodeInfo}}\ \mbox{\hyperlink{classFlowNetwork_aa4d5a04e0ebafbc4c5dcbd1e55a5d9c3}{getSource}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classFlowNetwork_a6ee33b3932632fb03153cc08dabad494}{matchingTopic}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structSubmission}{Submission}}\&\ sub,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structReviewer}{Reviewer}}\&\ rev)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classFlowNetwork_aa27fea82214258b52db70452e07228a1}{buildNetwork}}(\textcolor{keyword}{const}\ std::map<int,\ Submission>\&\ submissions,\ \textcolor{keyword}{const}\ std::map<int,\ Reviewer>\&\ reviewers);}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{structNodeInfo}{NodeInfo}}\ \mbox{\hyperlink{classFlowNetwork_ae7d51bd4af54708f05cdc4ec70ef3186}{getSink}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{structParameters}{Parameters}}\ \mbox{\hyperlink{classFlowNetwork_a2550d6414d288c0b869d20fd5fa7e2e3}{getParameters}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT1\_FLOWNETWORK\_H}}
+
+\end{DoxyCode}
