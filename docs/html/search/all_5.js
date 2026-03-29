@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['getassignments_0',['getAssignments',['../classScheduler.html#afbf9239be4c3dfb2c0379a5b1ead30ef',1,'Scheduler']]],
-  ['getgraph_1',['getGraph',['../classFlowNetwork.html#a81b144a39ba2c166972765c84aa4fa68',1,'FlowNetwork']]],
-  ['getmissingreviews_2',['getMissingReviews',['../classScheduler.html#a24fc56e5ea84ebb4afd43de993c5cfa8',1,'Scheduler']]],
-  ['getparameters_3',['getParameters',['../classFlowNetwork.html#a2550d6414d288c0b869d20fd5fa7e2e3',1,'FlowNetwork']]],
-  ['getriskyreviewers_4',['getRiskyReviewers',['../classScheduler.html#aa606cf1f26f9a34ad932e651a6c58edb',1,'Scheduler']]],
-  ['getsink_5',['getSink',['../classFlowNetwork.html#ae7d51bd4af54708f05cdc4ec70ef3186',1,'FlowNetwork']]],
-  ['getsource_6',['getSource',['../classFlowNetwork.html#aa4d5a04e0ebafbc4c5dcbd1e55a5d9c3',1,'FlowNetwork']]],
-  ['graph_7',['Graph',['../classGraph.html',1,'']]],
-  ['graph_3c_20nodeinfo_20_3e_8',['Graph&lt; NodeInfo &gt;',['../classGraph.html',1,'']]]
+  ['failedassignment_0',['FailedAssignment',['../structFailedAssignment.html',1,'']]],
+  ['findaugmentingpath_1',['findAugmentingPath',['../EdmondsKarp_8h.html#a7ef59ca73ad539b2405ee93bb9e1b8de',1,'EdmondsKarp.h']]],
+  ['findminresidualalongpath_2',['findMinResidualAlongPath',['../EdmondsKarp_8h.html#a5d9eaea95963d260904788f49c789a07',1,'EdmondsKarp.h']]],
+  ['findvertex_3',['findVertex',['../classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]],
+  ['findvertexidx_4',['findVertexIdx',['../classGraph.html#a676cdfb976eccfa82b631d2094c1cdac',1,'Graph']]],
+  ['flownetwork_5',['flownetwork',['../classFlowNetwork.html',1,'FlowNetwork'],['../classFlowNetwork.html#af7eb68e9985860ad23a97df8a3a8b28c',1,'FlowNetwork::FlowNetwork()']]],
+  ['flownetwork_2ecpp_6',['FlowNetwork.cpp',['../FlowNetwork_8cpp.html',1,'']]],
+  ['flownetwork_2eh_7',['FlowNetwork.h',['../FlowNetwork_8h.html',1,'']]]
 ];

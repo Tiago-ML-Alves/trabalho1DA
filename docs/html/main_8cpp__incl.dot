@@ -28,7 +28,7 @@ digraph "Project1SampleDatasets/src/main.cpp"
   Node1 -> Node10 [id="edge13_Node000001_Node000010",color="steelblue1",style="solid",tooltip=" "];
   Node10 [id="Node000010",label="FlowNetwork.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$FlowNetwork_8h.html",tooltip="Declaration of the FlowNetwork class."];
   Node10 -> Node11 [id="edge14_Node000010_Node000011",color="steelblue1",style="solid",tooltip=" "];
-  Node11 [id="Node000011",label="Graph.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Graph_8h_source.html",tooltip=" "];
+  Node11 [id="Node000011",label="Graph.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Graph_8h.html",tooltip="Generic directed weighted graph with flow support."];
   Node11 -> Node2 [id="edge15_Node000011_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node11 -> Node12 [id="edge16_Node000011_Node000012",color="steelblue1",style="solid",tooltip=" "];
   Node12 [id="Node000012",label="vector",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['edge_0',['Edge',['../classEdge.html',1,'']]],
-  ['edmondskarp_1',['edmondsKarp',['../EdmondsKarp_8h.html#aee845b901c5d07f1257924584430e6f4',1,'EdmondsKarp.h']]],
-  ['edmondskarp_2eh_2',['EdmondsKarp.h',['../EdmondsKarp_8h.html',1,'']]]
+  ['deleteedge_0',['deleteEdge',['../classVertex.html#a622503fe44ef12d5c39bd1043d47865c',1,'Vertex']]],
+  ['deletematrix_1',['deletematrix',['../Graph_8h.html#ad56527992afe31a371065e795da57d25',1,'deleteMatrix(int **m, int n):&#160;Graph.h'],['../Graph_8h.html#af077bc8682a1a1d97e30b08eb1131b19',1,'deleteMatrix(double **m, int n):&#160;Graph.h']]]
 ];

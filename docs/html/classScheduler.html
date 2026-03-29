@@ -83,19 +83,19 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a756c7b183ec3e90f23f72584d04dcf7d" id="r_a756c7b183ec3e90f23f72584d04dcf7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a756c7b183ec3e90f23f72584d04dcf7d">Scheduler</a> (<a class="el" href="classFlowNetwork.html">FlowNetwork</a> &amp;<a class="el" href="classEdge.html">flowNetwork</a>, <a class="el" href="classEdge.html">const</a> std::map&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="structSubmission.html">Submission</a> &gt; &amp;<a class="el" href="classEdge.html">submissions</a>, <a class="el" href="classEdge.html">const</a> std::map&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="structReviewer.html">Reviewer</a> &gt; &amp;<a class="el" href="classEdge.html">reviewers</a>)</td></tr>
+<tr class="memitem:a756c7b183ec3e90f23f72584d04dcf7d" id="r_a756c7b183ec3e90f23f72584d04dcf7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a756c7b183ec3e90f23f72584d04dcf7d">Scheduler</a> (<a class="el" href="classFlowNetwork.html">FlowNetwork</a> &amp;<a class="el" href="classEdge.html">flowNetwork</a>, <a class="el" href="classEdge.html">const</a> <a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::map</a>&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="structSubmission.html">Submission</a> &gt; &amp;<a class="el" href="classEdge.html">submissions</a>, <a class="el" href="classEdge.html">const</a> <a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::map</a>&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="structReviewer.html">Reviewer</a> &gt; &amp;<a class="el" href="classEdge.html">reviewers</a>)</td></tr>
 <tr class="memdesc:a756c7b183ec3e90f23f72584d04dcf7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the <a class="el" href="classScheduler.html" title="Orchestrates Max-Flow execution and interprets the results.">Scheduler</a>, runs Max-Flow and extracts assignments.  <br /></td></tr>
 <tr class="separator:a756c7b183ec3e90f23f72584d04dcf7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9fca17a227c2bf7050735da5327310a" id="r_ae9fca17a227c2bf7050735da5327310a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#ae9fca17a227c2bf7050735da5327310a">runRiskAnalysis</a> (<a class="el" href="classEdge.html">int</a> <a class="el" href="classEdge.html">k</a>)</td></tr>
 <tr class="memdesc:ae9fca17a227c2bf7050735da5327310a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulates reviewer removals to identify critical reviewers.  <br /></td></tr>
 <tr class="separator:ae9fca17a227c2bf7050735da5327310a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbf9239be4c3dfb2c0379a5b1ead30ef" id="r_afbf9239be4c3dfb2c0379a5b1ead30ef"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structAssignment.html">Assignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#afbf9239be4c3dfb2c0379a5b1ead30ef">getAssignments</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memitem:afbf9239be4c3dfb2c0379a5b1ead30ef" id="r_afbf9239be4c3dfb2c0379a5b1ead30ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::vector</a>&lt; <a class="el" href="structAssignment.html">Assignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#afbf9239be4c3dfb2c0379a5b1ead30ef">getAssignments</a> () <a class="el" href="classEdge.html">const</a></td></tr>
 <tr class="memdesc:afbf9239be4c3dfb2c0379a5b1ead30ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of successful reviewer–submission assignments.  <br /></td></tr>
 <tr class="separator:afbf9239be4c3dfb2c0379a5b1ead30ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa606cf1f26f9a34ad932e651a6c58edb" id="r_aa606cf1f26f9a34ad932e651a6c58edb"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="classEdge.html">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#aa606cf1f26f9a34ad932e651a6c58edb">getRiskyReviewers</a> () <a class="el" href="classEdge.html">const</a></td></tr>
 <tr class="memdesc:aa606cf1f26f9a34ad932e651a6c58edb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the set of reviewer IDs whose removal causes assignment failure.  <br /></td></tr>
 <tr class="separator:aa606cf1f26f9a34ad932e651a6c58edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24fc56e5ea84ebb4afd43de993c5cfa8" id="r_a24fc56e5ea84ebb4afd43de993c5cfa8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structFailedAssignment.html">FailedAssignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a24fc56e5ea84ebb4afd43de993c5cfa8">getMissingReviews</a> () <a class="el" href="classEdge.html">const</a></td></tr>
+<tr class="memitem:a24fc56e5ea84ebb4afd43de993c5cfa8" id="r_a24fc56e5ea84ebb4afd43de993c5cfa8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::vector</a>&lt; <a class="el" href="structFailedAssignment.html">FailedAssignment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a24fc56e5ea84ebb4afd43de993c5cfa8">getMissingReviews</a> () <a class="el" href="classEdge.html">const</a></td></tr>
 <tr class="memdesc:a24fc56e5ea84ebb4afd43de993c5cfa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of submissions that could not be fully assigned.  <br /></td></tr>
 <tr class="separator:a24fc56e5ea84ebb4afd43de993c5cfa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a006b3cc413e969628a2115040727afbb" id="r_a006b3cc413e969628a2115040727afbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a006b3cc413e969628a2115040727afbb">wasSuccessful</a> () <a class="el" href="classEdge.html">const</a></td></tr>
@@ -121,13 +121,13 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classEdge.html">const</a> std::map&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="structSubmission.html">Submission</a> &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classEdge.html">const</a> <a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::map</a>&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="structSubmission.html">Submission</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>submissions</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classEdge.html">const</a> std::map&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="structReviewer.html">Reviewer</a> &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classEdge.html">const</a> <a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::map</a>&lt; <a class="el" href="classEdge.html">int</a>, <a class="el" href="structReviewer.html">Reviewer</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>reviewers</em>&#160;</td>
         </tr>
         <tr>
@@ -158,7 +158,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="structAssignment.html">Assignment</a> &gt; Scheduler::getAssignments </td>
+          <td class="memname"><a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::vector</a>&lt; <a class="el" href="structAssignment.html">Assignment</a> &gt; Scheduler::getAssignments </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -178,7 +178,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="structFailedAssignment.html">FailedAssignment</a> &gt; Scheduler::getMissingReviews </td>
+          <td class="memname"><a class="el" href="classEdge.html#ab976213419283ed754f42f57b195a288">std::vector</a>&lt; <a class="el" href="structFailedAssignment.html">FailedAssignment</a> &gt; Scheduler::getMissingReviews </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
