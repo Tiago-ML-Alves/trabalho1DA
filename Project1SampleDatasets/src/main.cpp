@@ -222,7 +222,7 @@ static void runInteractive()
         case 1:
         {
             std::string file;
-            std::cout << "Input file name (Absolute path): ";
+            std::cout << "  Input file name (Absolute path): ";
             std::getline(std::cin, file);
 
 
@@ -236,7 +236,7 @@ static void runInteractive()
 
             if (ns.empty())
             {
-                std::cerr << "Error: no submissions loaded\n";
+                std::cerr << "  Error: no submissions loaded\n";
                 break;
             }
 
@@ -245,7 +245,7 @@ static void runInteractive()
             sched.reset();
             net.reset();
 
-            std::cout << "Loaded " << subs.size() << " submission(s), "
+            std::cout << "  Loaded " << subs.size() << " submission(s), "
                       << revs.size() << " reviewer(s).\n";
             pauseExecution();
             break;
@@ -253,13 +253,13 @@ static void runInteractive()
 
         // 2 ── display ────────────────────────────────────────────────────────
         case 2:
-            if (!loaded) std::cout << "Load a file first (option 1).\n";
+            if (!loaded) std::cout << "  Load a file first (option 1).\n";
             else displayData(subs, revs, p, c);
             pauseExecution(); break;
 
         // 3 ── assign ─────────────────────────────────────────────────────────
         case 3:
-            if (!loaded) std::cout << "Load a file first (option 1).\n";
+            if (!loaded) std::cout << "  Load a file first (option 1).\n";
             else {
                 net = std::unique_ptr<FlowNetwork>(new FlowNetwork(subs, revs, p, c.generateAssignments));
                 sched = std::unique_ptr<Scheduler>(new Scheduler(*net, subs, revs));
@@ -273,7 +273,7 @@ static void runInteractive()
         case 4:
             if (!sched)
             {
-                std::cout << "Run the assignment first (option 3).\n";
+                std::cout << " Run the assignment first (option 3).\n";
                 pauseExecution(); break;
             }
             std::cout << "  RiskAnalysis is " << c.riskAnalysis << " in the file.\n" << "" << std::string(54, '-') <<
@@ -281,7 +281,7 @@ static void runInteractive()
 
             sched->runRiskAnalysis(c.riskAnalysis);
 
-            if (sched->getRiskyReviewers().empty()) std::cout << "No risky reviewers found.\n";
+            if (sched->getRiskyReviewers().empty()) std::cout << "  No risky reviewers found.\n";
             else
             {
                 std::cout << "  Risky reviewer IDs: ";
@@ -297,16 +297,16 @@ static void runInteractive()
         {
             if (!sched)
             {
-                std::cout << "Nothing to save yet — run assignment first.\n";
+                std::cout << "  Nothing to save yet — run assignment first.\n";
                 pauseExecution(); break;
             }
             std::string fname;
-            std::cout << "Output file [" << c.outputFileName << "]: ";
+            std::cout << "  Output file [" << c.outputFileName << "]: ";
                 std::string oldname = c.outputFileName;
             std::getline(std::cin, fname);
             if (!fname.empty()) c.outputFileName = fname + c.outputFileName;
             Output::write(*sched, c);
-            std::cout << "Saved to \"" << c.outputFileName << "\"\n";
+            std::cout << "  Saved to \"" << c.outputFileName << "\"\n";
                 c.outputFileName = oldname;
             pauseExecution();
             break;
