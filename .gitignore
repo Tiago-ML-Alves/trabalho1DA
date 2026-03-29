@@ -13,6 +13,7 @@ cmake-build-*/
 Debug/
 Release/
 
+
 # IDE files
 .vscode/
 .idea/
@@ -25,3 +26,5 @@ Release/
 # Temporary files
 *.tmp
 *.log
+*.DS_STORE
+output/

@@ -1,0 +1,21 @@
+\doxysection{Output.\+h}
+\hypertarget{Output_8h_source}{}\label{Output_8h_source}\index{Project1SampleDatasets/src/Output.h@{Project1SampleDatasets/src/Output.h}}
+\mbox{\hyperlink{Output_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ PROJECT1\_OUTPUT\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ PROJECT1\_OUTPUT\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Scheduler_8h}{Scheduler.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOutput}{Output}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOutput_a1fb54b3c3282848dfed83943a34e5d85}{write}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classScheduler}{Scheduler}}\&\ \mbox{\hyperlink{classEdge}{scheduler}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structControl}{Control}}\&\ \mbox{\hyperlink{classEdge}{control}});}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ writeAssignments(\mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::vector<Assignment>}}\ \mbox{\hyperlink{classEdge}{assignments}},\ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::ofstream}}\&\ \mbox{\hyperlink{classEdge}{file}});}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ writeFailedAssignments(\mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::vector<FailedAssignment>}}\ \mbox{\hyperlink{classEdge}{failedAssignments}},\ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::ofstream}}\&\ \mbox{\hyperlink{classEdge}{file}});}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ writeRiskAnalysis(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::set<int>}}\&\ \mbox{\hyperlink{classEdge}{riskyReviewers}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structControl}{Control}}\&\ \mbox{\hyperlink{classEdge}{control}},\ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::ofstream}}\&\ \mbox{\hyperlink{classEdge}{file}});}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT1\_OUTPUT\_H}}
+
+\end{DoxyCode}

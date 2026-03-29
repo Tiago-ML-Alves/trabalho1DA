@@ -1,0 +1,154 @@
+\doxysection{Edge\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classEdge}{}\label{classEdge}\index{Edge$<$ T $>$@{Edge$<$ T $>$}}
+
+
+Represents a directed weighted edge with optional flow and reverse pointer.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{Edge}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*}orig, \mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*}dest, \mbox{\hyperlink{classEdge}{double}} \mbox{\hyperlink{classEdge}{w}})
+\begin{DoxyCompactList}\small\item\em Constructs an edge from {\ttfamily orig} to {\ttfamily dest} with weight {\ttfamily w}. \end{DoxyCompactList}\item 
+\Hypertarget{classEdge_a9a2de066dff8513dd788d553fc1d0c81}\label{classEdge_a9a2de066dff8513dd788d553fc1d0c81} 
+\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*} {\bfseries get\+Dest} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the destination vertex. \end{DoxyCompactList}\item 
+\Hypertarget{classEdge_a3df378e283d6c8be5be4170ac8d7f4e8}\label{classEdge_a3df378e283d6c8be5be4170ac8d7f4e8} 
+\mbox{\hyperlink{classEdge}{double}} {\bfseries get\+Weight} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the edge weight (also used as capacity). \end{DoxyCompactList}\item 
+\Hypertarget{classEdge_a2d36af60fa3dea16824bec12e5f68c58}\label{classEdge_a2d36af60fa3dea16824bec12e5f68c58} 
+\mbox{\hyperlink{classEdge}{bool}} {\bfseries is\+Selected} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns true if this edge is marked as selected. \end{DoxyCompactList}\item 
+\Hypertarget{classEdge_a40fc1470c5339203defca19b67c2535b}\label{classEdge_a40fc1470c5339203defca19b67c2535b} 
+\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*} {\bfseries get\+Orig} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the source vertex. \end{DoxyCompactList}\item 
+\Hypertarget{classEdge_af0a900f3006e47b9f363df7429298eeb}\label{classEdge_af0a900f3006e47b9f363df7429298eeb} 
+\mbox{\hyperlink{classEdge}{Edge}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*} {\bfseries get\+Reverse} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the reverse edge (used in residual graph). \end{DoxyCompactList}\item 
+\Hypertarget{classEdge_a75458cfc838ca5aee5c34cb9f03b5647}\label{classEdge_a75458cfc838ca5aee5c34cb9f03b5647} 
+\mbox{\hyperlink{classEdge}{double}} {\bfseries get\+Flow} () \mbox{\hyperlink{classEdge}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the current flow through this edge. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classEdge_a87c8402c5edd6729a2c934e2a0cce6fe}{set\+Selected}} (\mbox{\hyperlink{classEdge}{bool}} selected)
+\begin{DoxyCompactList}\small\item\em Marks or unmarks this edge as selected. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classEdge_afe8f8429025756c63f38e8c6fde7382c}{set\+Reverse}} (\mbox{\hyperlink{classEdge}{Edge}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*}reverse)
+\begin{DoxyCompactList}\small\item\em Sets the reverse edge pointer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classEdge_a1819116e2c156733a14bbd94cc27908e}{set\+Flow}} (\mbox{\hyperlink{classEdge}{double}} flow)
+\begin{DoxyCompactList}\small\item\em Sets the flow through this edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEdge_ae4d65678b91bd9d814af4720ad87cd0c}\label{classEdge_ae4d65678b91bd9d814af4720ad87cd0c} 
+\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*} {\bfseries dest}
+\item 
+\Hypertarget{classEdge_af188b57b604f0d65e2da48733bd76426}\label{classEdge_af188b57b604f0d65e2da48733bd76426} 
+\mbox{\hyperlink{classEdge}{double}} {\bfseries weight}
+\item 
+\Hypertarget{classEdge_a5242549271b59544ad1189fb532b5bbe}\label{classEdge_a5242549271b59544ad1189fb532b5bbe} 
+\mbox{\hyperlink{classEdge}{bool}} {\bfseries selected} = \mbox{\hyperlink{classEdge}{false}}
+\item 
+\Hypertarget{classEdge_a4510c31e0479f9d25f6e35d086887192}\label{classEdge_a4510c31e0479f9d25f6e35d086887192} 
+\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*} {\bfseries orig}
+\item 
+\Hypertarget{classEdge_a6c1e5191f85afbd20cf6198815c9b079}\label{classEdge_a6c1e5191f85afbd20cf6198815c9b079} 
+\mbox{\hyperlink{classEdge}{Edge}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*} {\bfseries reverse} = \mbox{\hyperlink{classEdge}{nullptr}}
+\item 
+\Hypertarget{classEdge_a30808601fa37f509147eabf9cc5f9ed6}\label{classEdge_a30808601fa37f509147eabf9cc5f9ed6} 
+\mbox{\hyperlink{classEdge}{double}} {\bfseries flow}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Edge$<$ T $>$}
+Represents a directed weighted edge with optional flow and reverse pointer. 
+
+Used both for standard graph traversal and for residual-\/graph operations in the Edmonds–\+Karp Max-\/\+Flow algorithm.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the information stored at each vertex endpoint. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEdge_ab976213419283ed754f42f57b195a288}\label{classEdge_ab976213419283ed754f42f57b195a288} 
+\index{Edge$<$ T $>$@{Edge$<$ T $>$}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge$<$ T $>$@{Edge$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classEdge}{class}} \mbox{\hyperlink{classEdge}{T}} $>$ \\
+\mbox{\hyperlink{classEdge}{Edge}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$\mbox{\hyperlink{classEdge}{\+::\+Edge}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*}}]{orig,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{\mbox{\hyperlink{classEdge}{double}}}]{w }\end{DoxyParamCaption})}
+
+
+
+Constructs an edge from {\ttfamily orig} to {\ttfamily dest} with weight {\ttfamily w}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orig} & Source vertex. \\
+\hline
+{\em dest} & Destination vertex. \\
+\hline
+{\em w} & \doxylink{classEdge}{Edge} weight / capacity. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEdge_a1819116e2c156733a14bbd94cc27908e}\label{classEdge_a1819116e2c156733a14bbd94cc27908e} 
+\index{Edge$<$ T $>$@{Edge$<$ T $>$}!setFlow@{setFlow}}
+\index{setFlow@{setFlow}!Edge$<$ T $>$@{Edge$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setFlow()}{setFlow()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classEdge}{class}} \mbox{\hyperlink{classEdge}{T}} $>$ \\
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classEdge}{Edge}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$\+::set\+Flow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{double}}}]{flow }\end{DoxyParamCaption})}
+
+
+
+Sets the flow through this edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flow} & New flow value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEdge_afe8f8429025756c63f38e8c6fde7382c}\label{classEdge_afe8f8429025756c63f38e8c6fde7382c} 
+\index{Edge$<$ T $>$@{Edge$<$ T $>$}!setReverse@{setReverse}}
+\index{setReverse@{setReverse}!Edge$<$ T $>$@{Edge$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setReverse()}{setReverse()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classEdge}{class}} \mbox{\hyperlink{classEdge}{T}} $>$ \\
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classEdge}{Edge}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$\+::set\+Reverse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{Edge}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$ \texorpdfstring{$\ast$}{*}}]{reverse }\end{DoxyParamCaption})}
+
+
+
+Sets the reverse edge pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reverse} & Pointer to the reverse edge. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEdge_a87c8402c5edd6729a2c934e2a0cce6fe}\label{classEdge_a87c8402c5edd6729a2c934e2a0cce6fe} 
+\index{Edge$<$ T $>$@{Edge$<$ T $>$}!setSelected@{setSelected}}
+\index{setSelected@{setSelected}!Edge$<$ T $>$@{Edge$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setSelected()}{setSelected()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classEdge}{class}} \mbox{\hyperlink{classEdge}{T}} $>$ \\
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{classEdge}{Edge}}$<$ \mbox{\hyperlink{classEdge}{T}} $>$\+::set\+Selected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{bool}}}]{selected }\end{DoxyParamCaption})}
+
+
+
+Marks or unmarks this edge as selected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected} & New value. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Project1\+Sample\+Datasets/src/\mbox{\hyperlink{Graph_8h}{Graph.\+h}}\end{DoxyCompactItemize}

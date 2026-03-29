@@ -1,0 +1,84 @@
+\doxysection{Project1\+Sample\+Datasets/src/\+Graph.h File Reference}
+\hypertarget{Graph_8h}{}\label{Graph_8h}\index{Project1SampleDatasets/src/Graph.h@{Project1SampleDatasets/src/Graph.h}}
+
+
+Generic directed weighted graph with flow support.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include "{}Mutable\+Priority\+Queue.\+h"{}}\newline
+Include dependency graph for Graph.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classVertex}{Vertex$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Represents a node in the graph. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEdge}{Edge$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Represents a directed weighted edge with optional flow and reverse pointer. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classGraph}{Graph$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Generic directed weighted graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{Graph_8h_a12c2040f25d8e3a7b9e1c2024c618cb6}\label{Graph_8h_a12c2040f25d8e3a7b9e1c2024c618cb6} 
+\#\mbox{\hyperlink{classEdge}{define}} {\bfseries INF}~\mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std\+::numeric\+\_\+limits}}$<$\mbox{\hyperlink{classEdge}{double}}$>$\mbox{\hyperlink{classEdge}{\+::max}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{Graph_8h_ad56527992afe31a371065e795da57d25}{delete\+Matrix}} (\mbox{\hyperlink{classEdge}{int}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classEdge}{m}}, \mbox{\hyperlink{classEdge}{int}} \mbox{\hyperlink{classEdge}{n}})
+\begin{DoxyCompactList}\small\item\em Frees a 2D int matrix of size n×n. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{void}} \mbox{\hyperlink{Graph_8h_af077bc8682a1a1d97e30b08eb1131b19}{delete\+Matrix}} (\mbox{\hyperlink{classEdge}{double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classEdge}{m}}, \mbox{\hyperlink{classEdge}{int}} \mbox{\hyperlink{classEdge}{n}})
+\begin{DoxyCompactList}\small\item\em Frees a 2D double matrix of size n×n. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generic directed weighted graph with flow support. 
+
+Provides \doxylink{classVertex}{Vertex}, \doxylink{classEdge}{Edge} and \doxylink{classGraph}{Graph} template classes used as the backbone of the Max-\/\+Flow network. \begin{DoxyAuthor}{Author}
+Gonçalo Leão; updated by the DA 2024/2025 team. 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Graph_8h_af077bc8682a1a1d97e30b08eb1131b19}\label{Graph_8h_af077bc8682a1a1d97e30b08eb1131b19} 
+\index{Graph.h@{Graph.h}!deleteMatrix@{deleteMatrix}}
+\index{deleteMatrix@{deleteMatrix}!Graph.h@{Graph.h}}
+\doxysubsubsection{\texorpdfstring{deleteMatrix()}{deleteMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} delete\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{double}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{m,  }\item[{\mbox{\hyperlink{classEdge}{int}}}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Frees a 2D double matrix of size n×n. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Pointer to the matrix. \\
+\hline
+{\em n} & Number of rows/columns. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{Graph_8h_ad56527992afe31a371065e795da57d25}\label{Graph_8h_ad56527992afe31a371065e795da57d25} 
+\index{Graph.h@{Graph.h}!deleteMatrix@{deleteMatrix}}
+\index{deleteMatrix@{deleteMatrix}!Graph.h@{Graph.h}}
+\doxysubsubsection{\texorpdfstring{deleteMatrix()}{deleteMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{void}} delete\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{int}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{m,  }\item[{\mbox{\hyperlink{classEdge}{int}}}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Frees a 2D int matrix of size n×n. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Pointer to the matrix. \\
+\hline
+{\em n} & Number of rows/columns. \\
+\hline
+\end{DoxyParams}
