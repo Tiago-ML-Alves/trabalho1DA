@@ -2,12 +2,28 @@
 
 #include <ranges>
 
+/**
+ * @brief Constructs the flow network and builds the graph immediately.
+ * @param submissions Map of submission ID → Submission.
+ * @param reviewers   Map of reviewer ID → Reviewer.
+ * @param parameters  Problem parameters.
+ * @param generateAssignments Topic-matching mode (1, 2 or 3).
+ * @complexity O(S × R)
+ */
+
 FlowNetwork::FlowNetwork(const std::map<int, Submission>& submissions, const std::map<int, Reviewer>& reviewers, const Parameters& parameters, int generateAssignments)
     : parameters_(parameters)
 {
     generateAssignments_ = generateAssignments;
     buildNetwork(submissions, reviewers);
 }
+
+/**
+ * @brief Populates the graph with vertices and edges for the flow network.
+ * @param submissions Map of submission ID → Submission.
+ * @param reviewers   Map of reviewer ID → Reviewer.
+ * @complexity O(S × R)
+ */
 
 void FlowNetwork::buildNetwork(const std::map<int, Submission>& submissions, const std::map<int, Reviewer>& reviewers)
 {
@@ -39,6 +55,14 @@ void FlowNetwork::buildNetwork(const std::map<int, Submission>& submissions, con
     }
 }
 
+/**
+ * @brief Checks whether a submission–reviewer pair is topic-compatible.
+ * @param sub Submission to check.
+ * @param rev Reviewer to check.
+ * @return true if compatible, false otherwise.
+ * @complexity O(1)
+ */
+
 bool FlowNetwork::topicsMatch(const Submission& sub, const Reviewer& rev) const
 {
     switch (generateAssignments_)
@@ -63,6 +87,14 @@ bool FlowNetwork::topicsMatch(const Submission& sub, const Reviewer& rev) const
     }
     return false;
 }
+
+/**
+ * @brief Returns the matched topic ID for a compatible pair, or -1 if none.
+ * @param sub Submission.
+ * @param rev Reviewer.
+ * @return Matched topic ID.
+ * @complexity O(1)
+ */
 
 int FlowNetwork::matchingTopic(const Submission& sub, const Reviewer& rev) const
 {

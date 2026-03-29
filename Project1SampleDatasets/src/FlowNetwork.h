@@ -2,11 +2,27 @@
 // Created by alex on 3/20/26.
 //
 
+/**
+ * @file FlowNetwork.h
+ * @brief Declaration of the FlowNetwork class.
+ */
+
 #ifndef PROJECT1_FLOWNETWORK_H
 #define PROJECT1_FLOWNETWORK_H
 #include "Graph.h"
 #include "Types.h"
 #include <map>
+
+/**
+ * @class FlowNetwork
+ * @brief Builds a Max-Flow network from submissions and reviewers.
+ *
+ * Network topology:
+ *   SOURCE ──(minReviews)──► [Submission] ──(1)──► [Reviewer] ──(maxReviews)──► SINK
+ *
+ * @see EdmondsKarp.h
+ * @see Scheduler
+ */
 
 class FlowNetwork
 {
