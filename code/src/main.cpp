@@ -16,6 +16,7 @@
 #include <memory>
 #include <map>
 #include <string>
+#include <filesystem>
 
 #include "Types.h"
 #include "Parser.h"
@@ -34,6 +35,10 @@ static std::string truncate(const std::string& s, std::size_t max)
     if (s.size() <= max) return s;
     if (max <= 3) return s.substr(0, max);
     return s.substr(0, max - 3) + "...";
+}
+
+std::string filenameOnly(const std::string& path) {
+    return std::filesystem::path(path).filename().string();
 }
 
 /** @brief Wait for the user to press Enter. */
@@ -188,6 +193,7 @@ static void runInteractive()
     Control c = {};
     c.outputFileName = "output.csv";
     bool loaded = false;
+    std::string path;
 
     // Both reset together whenever a new file is loaded.
     std::unique_ptr<FlowNetwork> net;
@@ -198,7 +204,7 @@ static void runInteractive()
     {
         std::cout << "\n" << std::string(50, '-')
                   << "\n  REVIEW ASSIGNMENT TOOL"
-                  << "\n  File: " << (loaded ? c.outputFileName : "(none)")
+                  << "\n  File: " << (loaded ? filenameOnly(path) : "(none)")
                   << "\n" << std::string(50, '-')
                   << "\n  1  Load input file"
                   << "\n  2  Display loaded data"
@@ -224,6 +230,7 @@ static void runInteractive()
             std::string file;
             std::cout << "Input file name (Relative Path): ";
             std::getline(std::cin, file);
+            path = file;
 
 
             std::map<int, Submission> ns;
