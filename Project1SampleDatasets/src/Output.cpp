@@ -1,7 +1,18 @@
-#include "Output.h"
+/**
+* @file Output.cpp
+ * @brief Implementation of the Output class.
+ */
 
+#include "Output.h"
 #include <filesystem>
 #include <fstream>
+
+/**
+ * @brief Writes all output sections to the CSV file specified in @p control.
+ * @param scheduler Completed Scheduler containing results.
+ * @param control   Control parameters (output filename and flags).
+ * @complexity O(A log A)
+ */
 
 void Output::write(const Scheduler& scheduler, const Control& control)
 {
@@ -28,6 +39,13 @@ void Output::write(const Scheduler& scheduler, const Control& control)
     file.close();
 }
 
+/**
+ * @brief Writes the assignment table (sorted by submission and by reviewer).
+ * @param assignments Vector of assignments (by value for sorting).
+ * @param file        Open output file stream.
+ * @complexity O(A log A)
+ */
+
 void Output::writeAssignments(std::vector<Assignment> assignments, std::ofstream& file)
 {
     std::sort(assignments.begin(), assignments.end(), [](const Assignment& a, const Assignment& b) {return a.submissionID < b.submissionID;});
@@ -45,6 +63,13 @@ void Output::writeAssignments(std::vector<Assignment> assignments, std::ofstream
     file << "#Total: " << assignments.size() << std::endl;
 }
 
+/**
+ * @brief Writes the failed-assignment section.
+ * @param failedAssignments Failed assignments (by value for sorting).
+ * @param file              Open output file stream.
+ * @complexity O(F log F)
+ */
+
 void Output::writeFailedAssignments(std::vector<FailedAssignment> failedAssignments, std::ofstream& file)
 {
     std::sort(failedAssignments.begin(), failedAssignments.end(), [](const FailedAssignment& a, const FailedAssignment& b) {return a.id < b.id;});
@@ -54,6 +79,14 @@ void Output::writeFailedAssignments(std::vector<FailedAssignment> failedAssignme
         file << assignment.id << ", " << assignment.primaryDomain << ", " << assignment.missingReviews << std::endl;
     }
 }
+
+/**
+ * @brief Writes the risk-analysis section.
+ * @param riskyReviewers Sorted set of risky reviewer IDs.
+ * @param control        Control parameters (provides the K value).
+ * @param file           Open output file stream.
+ * @complexity O(R)
+ */
 
 void Output::writeRiskAnalysis(const std::set<int>& riskyReviewers, const Control& control, std::ofstream& file)
 {

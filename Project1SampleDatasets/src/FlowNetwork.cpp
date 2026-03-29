@@ -1,5 +1,9 @@
-#include "FlowNetwork.h"
+/**
+* @file FlowNetwork.cpp
+ * @brief Implementation of the FlowNetwork class.
+ */
 
+#include "FlowNetwork.h"
 #include <ranges>
 
 /**
@@ -125,20 +129,40 @@ int FlowNetwork::matchingTopic(const Submission& sub, const Reviewer& rev) const
     return -1;
 }
 
+/**
+ * @brief Returns a reference to the flow network graph.
+ * @return Reference to the internal Graph<NodeInfo>.
+ */
+
 Graph<NodeInfo>& FlowNetwork::getGraph()
 {
     return graph_;
 }
+
+/**
+ * @brief Returns the NodeInfo identifying the sink vertex.
+ * @return NodeInfo with type SINK and id 0.
+ */
 
 NodeInfo FlowNetwork::getSink() const
 {
     return {0, VertexType::SINK};
 }
 
+/**
+ * @brief Returns the NodeInfo identifying the source vertex.
+ * @return NodeInfo with type SOURCE and id 0.
+ */
+
 NodeInfo FlowNetwork::getSource() const
 {
     return {0, VertexType::SOURCE};
 }
+
+/**
+ * @brief Returns the problem parameters used to build this network.
+ * @return Copy of the Parameters struct.
+ */
 
 Parameters FlowNetwork::getParameters() const
 {
