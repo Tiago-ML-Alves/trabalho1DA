@@ -205,7 +205,7 @@ static void runInteractive()
     {
         std::cout << "\n" << std::string(50, '-')
                   << "\n  REVIEW ASSIGNMENT TOOL"
-                  << "\n  File: " << (loaded ? c.outputFileName : "(none)")
+                  << "\n  Output file name: " << (loaded ? c.outputFileName : "(none)")
                   << "\n" << std::string(50, '-')
                   << "\n  1  Load input file"
                   << "\n  2  Display loaded data"
@@ -243,7 +243,7 @@ static void runInteractive()
 
             if (ns.empty())
             {
-                std::cerr << "error: no submissions loaded\n";
+                std::cerr << "Error: no submissions loaded\n";
                 break;
             }
 

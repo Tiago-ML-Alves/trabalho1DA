@@ -28,13 +28,13 @@ If running from the build directory:
 ```bash
 ./main
 
-#note that, in this case, relative files must be specified in the format: ../code/intended/directory
+#note that, in this case, relative paths must be specified in the format: ../code/intended/directory
 ```
 If running from the root directory:
 ```bash
 ./build/main
 
-#note that, in this case, relative files must be specified in the format: code/intended/directory
+#note that, in this case, relative paths must be specified in the format: code/intended/directory
 ```
 Launches a text menu with the following options:
 1. Load input file
