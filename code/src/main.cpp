@@ -302,12 +302,12 @@ static void runInteractive()
             }
             std::string fname;
             std::cout << "Output file [" << c.outputFileName << "]: ";
-                std::string oldname = c.outputFileName;
+            std::string oldname = c.outputFileName;
             std::getline(std::cin, fname);
             if (!fname.empty()) c.outputFileName = fname + c.outputFileName;
             Output::write(*sched, c);
             std::cout << "Saved to \"" << c.outputFileName << "\"\n";
-                c.outputFileName = oldname;
+            c.outputFileName = oldname;
             pauseExecution();
             break;
         }
