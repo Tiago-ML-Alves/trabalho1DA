@@ -16,6 +16,7 @@
 #include <memory>
 #include <map>
 #include <string>
+#include <filesystem>
 
 #include "Types.h"
 #include "Parser.h"
@@ -42,6 +43,12 @@ static void pauseExecution()
     std::cout << "\n  Press Enter to continue...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     //std::cin.get();
+}
+static std::string resolvePath(const std::string& path, const std::string& execDir)
+{
+    std::filesystem::path p(path);
+    if (p.is_absolute()) return path; // already absolute, use as is
+    return (std::filesystem::path(execDir) / p).string(); // relative to executable
 }
 
 // ─── display ─────────────────────────────────────────────────────────────────

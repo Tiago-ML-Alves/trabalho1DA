@@ -24,8 +24,17 @@ make
 ## How to Run
 
 ### Interactive Mode
+If running from the build directory:
 ```bash
 ./main
+
+#note that, in this case, relative files must be specified in the format: ../code/intended/directory
+```
+If running from the root directory:
+```bash
+./build/main
+
+#note that, in this case, relative files must be specified in the format: code/intended/directory
 ```
 Launches a text menu with the following options:
 1. Load input file
@@ -37,7 +46,7 @@ Launches a text menu with the following options:
 
 ### Batch Mode
 ```bash
-./main -b input.csv output.csv
+./main -b /path/to/input.csv /path/to/output.csv
 ```
 Automatically runs the full pipeline and writes
 results to the specified output file.
