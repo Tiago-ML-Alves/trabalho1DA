@@ -2,7 +2,12 @@
 Design of Algorithms (DA) — Spring 2026 — L.EIC016
 Group <GN> | TP <TN>
 
+
+## - GENERAL CONSIDERATIONS -
+- All subtopics under section 4.2 are preoperly adressed and explained  in our PowerPoint presentation;
+- The "non-trivial input example stated under subsecton [T2.2] Basic Formulation with Risk Analysis = 1" is located in the input/ directory, named "datasettopic2-2.csv";
 ## Group Members
+
 - Duarte Pinto (up number)
 - João Maia (up number)
 - Tiago Alves (up number)

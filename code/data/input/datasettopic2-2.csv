@@ -1,0 +1,24 @@
+#Submissions
+#Id, Title, Authors, E-mail, Primary, Secondary
+1, "Paper A", Author A, a@email.com, 1,
+2, "Paper B", Author B, b@email.com, 2,
+
+#Reviewers
+#Id, Name, E-mail, Primary, Secondary
+1, Reviewer One, r1@email.com, 1,
+2, Reviewer Two, r2@email.com, 2,
+3, Reviewer Three, r3@email.com, 1,
+4, Reviewer Four, r4@email.com, 2,
+
+#Parameters
+MinReviewsPerSubmission, 2
+MaxReviewsPerReviewer, 2
+PrimaryReviewerExpertise, 1
+SecondaryReviewerExpertise, 0
+PrimarySubmissionDomain, 1
+SecondarySubmissionDomain, 0
+
+#Control
+GenerateAssignments, 1
+RiskAnalysis, 1
+OutputFileName, "output.csv"
