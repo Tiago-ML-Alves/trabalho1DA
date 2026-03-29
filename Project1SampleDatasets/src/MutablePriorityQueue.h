@@ -1,9 +1,13 @@
-/*
- * MutablePriorityQueue.h
- * A simple implementation of mutable priority queues, required by Dijkstra algorithm.
+/**
+* @file MutablePriorityQueue.h
+ * @brief A simple implementation of a mutable priority queue, required by Dijkstra's algorithm.
  *
- * Created on: 17/03/2018
- *      Author: João Pascoal Faria
+ * @details The template parameter T must satisfy two requirements:
+ *   - Have an accessible integer field `queueIndex`.
+ *   - Have `operator<` defined.
+ *
+ * @author João Pascoal Faria
+ * @date 17/03/2018
  */
 
 #ifndef DA_TP_CLASSES_MUTABLEPRIORITYQUEUE
