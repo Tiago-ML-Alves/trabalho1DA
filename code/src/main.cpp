@@ -229,7 +229,7 @@ static void runInteractive()
         case 1:
         {
             std::string file;
-            std::cout << "Input file name (Absolute path): ";
+            std::cout << "Input file name (Relative Path): ";
             std::getline(std::cin, file);
 
 
@@ -243,7 +243,7 @@ static void runInteractive()
 
             if (ns.empty())
             {
-                std::cerr << "Error: no submissions loaded\n";
+                std::cerr << "error: no submissions loaded\n";
                 break;
             }
 
@@ -308,7 +308,7 @@ static void runInteractive()
                 pauseExecution(); break;
             }
             std::string fname;
-            std::cout << "Output file [" << c.outputFileName << "]: ";
+            std::cout << "Output folder (Relative Path): ";
             std::string oldname = c.outputFileName;
             std::getline(std::cin, fname);
             if (!fname.empty()) c.outputFileName = fname + c.outputFileName;
