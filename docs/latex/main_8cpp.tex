@@ -1,0 +1,50 @@
+\doxysection{Project1\+Sample\+Datasets/src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{Project1SampleDatasets/src/main.cpp@{Project1SampleDatasets/src/main.cpp}}
+
+
+Entry point for the Review \doxylink{structAssignment}{Assignment} Tool.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include "{}Types.\+h"{}}\newline
+{\ttfamily \#include "{}Parser.\+h"{}}\newline
+{\ttfamily \#include "{}Flow\+Network.\+h"{}}\newline
+{\ttfamily \#include "{}Scheduler.\+h"{}}\newline
+{\ttfamily \#include "{}Output.\+h"{}}\newline
+Include dependency graph for main.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEdge}{int}} \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (\mbox{\hyperlink{classEdge}{int}} \mbox{\hyperlink{classEdge}{argc}}, \mbox{\hyperlink{classEdge}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classEdge}{argv}}\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Program entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Entry point for the Review \doxylink{structAssignment}{Assignment} Tool. 
+
+Two modes\+:
+\begin{DoxyItemize}
+\item Interactive\+: text menu.
+\item Batch\+: ./review\+\_\+tool -\/b \doxylink{classEdge_ab976213419283ed754f42f57b195a288}{input.\+csv} \doxylink{classEdge_ab976213419283ed754f42f57b195a288}{output.\+csv}
+\end{DoxyItemize}
+
+All computation lives in \doxylink{classParser}{Parser}, \doxylink{classFlowNetwork}{Flow\+Network}, \doxylink{classScheduler}{Scheduler}, \doxylink{classOutput}{Output}. This file only wires them together. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{int}} main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{int}}}]{argc,  }\item[{\mbox{\hyperlink{classEdge}{char}} \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Program entry point. 
+
+Usage\+: ./review\+\_\+tool — interactive mode ./review\+\_\+tool -\/b \doxylink{classEdge_ab976213419283ed754f42f57b195a288}{input.\+csv} \doxylink{classEdge_ab976213419283ed754f42f57b195a288}{out.\+csv} — batch mode 

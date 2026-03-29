@@ -1,0 +1,93 @@
+\doxysection{Types.\+h}
+\hypertarget{Types_8h_source}{}\label{Types_8h_source}\index{Project1SampleDatasets/src/Types.h@{Project1SampleDatasets/src/Types.h}}
+\mbox{\hyperlink{Types_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ PROJECT1\_TYPES\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ PROJECT1\_TYPES\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{Types_8h_afa099a55c5746eff5a0e1ffc04f53cc0}{VertexType}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAssignment}{Assignment}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ submissionID;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ reviewerID;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ matchedTopic;}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structFailedAssignment}{FailedAssignment}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ primaryDomain;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ missingReviews;}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structSubmission}{Submission}}}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::string}}\ title;}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::string}}\ authorName;}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::string}}\ email;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{int}\ primaryTopic;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{int}\ secondaryTopic;}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structReviewer}{Reviewer}}}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::string}}\ name;}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::string}}\ email;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{int}\ primaryExpertise;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ secondaryExpertise;}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structParameters}{Parameters}}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{int}\ maxReviewsPerReviewer;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{int}\ minReviewsPerSubmission;}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ primaryReviewerExpertise;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ secondaryReviewerExpertise;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ primarySubmissionDomain;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ secondarySubmissionDomain;}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structControl}{Control}}}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ generateAssignments;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{int}\ riskAnalysis;}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::string}}\ outputFileName\ =\ \textcolor{stringliteral}{"{}output.csv"{}};}
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{Types_8h_afa099a55c5746eff5a0e1ffc04f53cc0}{VertexType}}}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ SOURCE,}
+\DoxyCodeLine{00106\ \ \ \ \ SUBMISSION,}
+\DoxyCodeLine{00107\ \ \ \ \ REVIEWER,}
+\DoxyCodeLine{00108\ \ \ \ \ SINK}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNodeInfo}{NodeInfo}}}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{Types_8h_afa099a55c5746eff5a0e1ffc04f53cc0}{VertexType}}\ type;}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{structNodeInfo}{NodeInfo}}\&\ \mbox{\hyperlink{classEdge}{other}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{id}\ ==\ \mbox{\hyperlink{classEdge}{other}}.id\ \&\&\ type\ ==\ \mbox{\hyperlink{classEdge}{other}}.type;}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{Types_8h_aa2bc2fd5a40cdb0c40963e6fe6a24cce}{Section}}}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ NONE,}
+\DoxyCodeLine{00135\ \ \ \ \ SUBMISSIONS,}
+\DoxyCodeLine{00136\ \ \ \ \ REVIEWERS,}
+\DoxyCodeLine{00137\ \ \ \ \ PARAMETERS,}
+\DoxyCodeLine{00138\ \ \ \ \ CONTROL}
+\DoxyCodeLine{00139\ \};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
