@@ -244,6 +244,7 @@ static void runInteractive()
             if (ns.empty())
             {
                 std::cerr << "  error: no submissions loaded\n";
+                loaded = false;
                 break;
             }
 
@@ -320,7 +321,7 @@ static void runInteractive()
         }
 
         case 0:
-            std::cout << "  Goodbye :)\n";
+            std::cout << "  Goodbye!\n";
             break;
 
         default:

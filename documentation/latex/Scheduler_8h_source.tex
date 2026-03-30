@@ -1,0 +1,36 @@
+\doxysection{Scheduler.\+h}
+\hypertarget{Scheduler_8h_source}{}\label{Scheduler_8h_source}\index{Project1SampleDatasets/src/Scheduler.h@{Project1SampleDatasets/src/Scheduler.h}}
+\mbox{\hyperlink{Scheduler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ PROJECT1\_SCHEDULER\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ PROJECT1\_SCHEDULER\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Types_8h}{Types.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{FlowNetwork_8h}{FlowNetwork.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classScheduler}{Scheduler}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classScheduler}{Scheduler}}\ (\mbox{\hyperlink{classFlowNetwork}{FlowNetwork}}\&\ \mbox{\hyperlink{classEdge}{flowNetwork}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::map<int,\ Submission>}}\&\ \mbox{\hyperlink{classEdge}{submissions}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::map<int,\ Reviewer>}}\&\ \mbox{\hyperlink{classEdge}{reviewers}});}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classScheduler_ae9fca17a227c2bf7050735da5327310a}{runRiskAnalysis}}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classEdge}{k}});}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::vector<Assignment>}}\ \mbox{\hyperlink{classScheduler_afbf9239be4c3dfb2c0379a5b1ead30ef}{getAssignments}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::set<int>}}\ \mbox{\hyperlink{classScheduler_aa606cf1f26f9a34ad932e651a6c58edb}{getRiskyReviewers}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::vector<FailedAssignment>}}\ \mbox{\hyperlink{classScheduler_a24fc56e5ea84ebb4afd43de993c5cfa8}{getMissingReviews}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classScheduler_a006b3cc413e969628a2115040727afbb}{wasSuccessful}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classFlowNetwork}{FlowNetwork}}\&\ flowNetwork\_;}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::map<int,\ Submission>}}\ submissions\_;}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::map\ <int,\ Reviewer>}}\ reviewers\_;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ successful\_;}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::vector<Assignment>}}\ assignments\_;}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::vector<FailedAssignment>}}\ missingReviews\_;}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classEdge_ab976213419283ed754f42f57b195a288}{std::set<int>}}\ riskyReviewers\_;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ countAssignedReviewers(\mbox{\hyperlink{classEdge}{Vertex<NodeInfo>}}*\ \mbox{\hyperlink{classEdge}{v}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ extractAssignments();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ checkSuccessful();}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT1\_SCHEDULER\_H}}
+
+\end{DoxyCode}

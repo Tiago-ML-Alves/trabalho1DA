@@ -77,9 +77,35 @@ Launches a text menu with the following options:
 0. Exit
 
 ## Batch Mode
+
+### Linux
+If running from the build directory:
 ```bash
-./main -b /path/to/input.csv /path/to/output.csv
+./main -b ../code/data/input/dataset1.csv ../code/data/output1.csv
+
+#note that, in this case, relative paths must be specified in the format: ../code/path/to/directory
 ```
+If running from the root directory:
+```bash
+./build/main -b code/data/input/dataset1.csv code/data/output1.csv
+
+#note that, in this case, relative paths must be specified in the format: code/path/to/directory
+```
+
+### Windows
+If running from the Debug directory (located inside /build):
+```bash
+./main.exe -b ../../code/data/input/dataset1.csv ../../code/data/output1.csv
+
+#note that, in this case, relative paths must be specified in the format: ../code/intended/directory
+```
+If running from the root directory:
+```bash
+./build/Debug/main.exe -b code/data/input/dataset1.csv code/data/output/output1.csv
+
+#note that, in this case, relative paths must be specified in the format: code/intended/directory
+```
+
 Automatically runs the full pipeline and writes
 results to the specified output file.
 
@@ -121,7 +147,7 @@ To avoid going inside the
 `docs/` folder, executing the following command from the project's root will automatically open a browser window on the documentation's main page:
 
 ```bash
-xdg-open docs/html/index.html
+xdg-open documentation/html/index.html
 ```
 ## Notes
 - Requires C++20 or later

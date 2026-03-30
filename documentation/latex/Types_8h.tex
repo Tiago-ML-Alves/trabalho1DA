@@ -1,0 +1,54 @@
+\doxysection{Project1\+Sample\+Datasets/src/\+Types.h File Reference}
+\hypertarget{Types_8h}{}\label{Types_8h}\index{Project1SampleDatasets/src/Types.h@{Project1SampleDatasets/src/Types.h}}
+
+
+Shared data types, structs and enumerations used across the project.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for Types.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structAssignment}{Assignment}}
+\begin{DoxyCompactList}\small\item\em Represents a successful reviewer-\/to-\/submission assignment. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structFailedAssignment}{Failed\+Assignment}}
+\begin{DoxyCompactList}\small\item\em Represents a submission that could not be fully assigned. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSubmission}{Submission}}
+\begin{DoxyCompactList}\small\item\em A scientific paper submitted to the conference. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structReviewer}{Reviewer}}
+\begin{DoxyCompactList}\small\item\em A conference reviewer with one or two areas of expertise. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structParameters}{Parameters}}
+\begin{DoxyCompactList}\small\item\em Numeric parameters read from the \doxylink{structParameters}{Parameters} section of the input CSV. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structControl}{Control}}
+\begin{DoxyCompactList}\small\item\em Runtime control flags read from the \doxylink{structControl}{Control} section of the input CSV. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNodeInfo}{Node\+Info}}
+\begin{DoxyCompactList}\small\item\em Information stored at each vertex of the flow-\/network graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{Types_8h_afa099a55c5746eff5a0e1ffc04f53cc0}\label{Types_8h_afa099a55c5746eff5a0e1ffc04f53cc0} 
+enum class \mbox{\hyperlink{Types_8h_afa099a55c5746eff5a0e1ffc04f53cc0}{Vertex\+Type}} \{ {\bfseries SOURCE}
+, {\bfseries SUBMISSION}
+, {\bfseries REVIEWER}
+, {\bfseries SINK}
+ \}
+\begin{DoxyCompactList}\small\item\em Identifies the role of a vertex inside the flow network. \end{DoxyCompactList}\item 
+\Hypertarget{Types_8h_aa2bc2fd5a40cdb0c40963e6fe6a24cce}\label{Types_8h_aa2bc2fd5a40cdb0c40963e6fe6a24cce} 
+enum class \mbox{\hyperlink{Types_8h_aa2bc2fd5a40cdb0c40963e6fe6a24cce}{Section}} \{ \newline
+{\bfseries NONE}
+, {\bfseries SUBMISSIONS}
+, {\bfseries REVIEWERS}
+, {\bfseries PARAMETERS}
+, \newline
+{\bfseries CONTROL}
+ \}
+\begin{DoxyCompactList}\small\item\em Tracks which CSV section the parser is currently reading. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Shared data types, structs and enumerations used across the project. 
+

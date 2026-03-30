@@ -1,0 +1,121 @@
+\doxysection{Edmonds\+Karp.\+h}
+\hypertarget{EdmondsKarp_8h_source}{}\label{EdmondsKarp_8h_source}\index{Project1SampleDatasets/src/EdmondsKarp.h@{Project1SampleDatasets/src/EdmondsKarp.h}}
+\mbox{\hyperlink{EdmondsKarp_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ PROJECT1\_EDMONDSKARP\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ PROJECT1\_EDMONDSKARP\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Graph_8h}{Graph.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{EdmondsKarp_8h_acb329d42a9a476d072878ef35a6a343c}{testAndVisit}}(std::queue<\ \mbox{\hyperlink{classVertex}{Vertex<T>}}*>\ \&q,\ \mbox{\hyperlink{classEdge}{Edge<T>}}\ *e,\ \mbox{\hyperlink{classVertex}{Vertex<T>}}\ *w,\ \textcolor{keywordtype}{double}\ residual)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ vertex\ 'w'\ is\ not\ visited\ and\ there\ is\ residual\ capacity}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\ w-\/>\mbox{\hyperlink{classVertex_aa2bb17f6ebd98a67f8da1f689b22fadc}{isVisited}}()\ \&\&\ residual\ >\ 0)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mark\ 'w'\ as\ visited,\ set\ the\ path\ through\ which\ it\ was\ reached,\ and\ enqueue\ it}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ w-\/>\mbox{\hyperlink{classVertex_a95a3f3c55f2ba371fae51d3fe0e76c23}{setVisited}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ w-\/>\mbox{\hyperlink{classVertex_a5ebf4b550ec94b89a8f80df1a53cc97d}{setPath}}(e);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ q.push(w);}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{EdmondsKarp_8h_a7ef59ca73ad539b2405ee93bb9e1b8de}{findAugmentingPath}}(\mbox{\hyperlink{classGraph}{Graph<T>}}\ *g,\ \mbox{\hyperlink{classVertex}{Vertex<T>}}\ *s,\ \mbox{\hyperlink{classVertex}{Vertex<T>}}\ *t)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Mark\ all\ vertices\ as\ not\ visited}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\ v\ :\ g-\/>\mbox{\hyperlink{classGraph_a41624b03fcb6bd29e4df574a1ec58541}{getVertexSet}}())\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ v-\/>setVisited(\textcolor{keyword}{false});}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ std::queue<Vertex<T>*>\ q;}
+\DoxyCodeLine{00050\ \ \ \ \ s-\/>\mbox{\hyperlink{classVertex_a95a3f3c55f2ba371fae51d3fe0e76c23}{setVisited}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00051\ \ \ \ \ q.push(s);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{while}\ (!q.empty())}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<T>}}*\ u\ =\ q.front();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ q.pop();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classEdge}{Edge<T>}}*\ e\ :\ u-\/>\mbox{\hyperlink{classVertex_a0010a7d0b7db1bb81dd2ebb1ffae650a}{getAdj}}())}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<T>}}*\ w\ =\ e-\/>getDest();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{EdmondsKarp_8h_acb329d42a9a476d072878ef35a6a343c}{testAndVisit}}(q,\ e,\ w,\ e-\/>getWeight()\ -\/\ e-\/>getFlow());}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classEdge}{Edge<T>}}*\ e\ :\ u-\/>\mbox{\hyperlink{classVertex_a361d7d0459d37aead6401d6af9f81f0a}{getIncoming}}())}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<T>}}*\ v\ =\ e-\/>getOrig();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{EdmondsKarp_8h_acb329d42a9a476d072878ef35a6a343c}{testAndVisit}}(q,\ e,\ v,\ e-\/>getFlow());}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ t-\/>\mbox{\hyperlink{classVertex_aa2bb17f6ebd98a67f8da1f689b22fadc}{isVisited}}();}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ Return\ true\ if\ a\ path\ to\ the\ target\ is\ found,\ false\ otherwise}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ Function\ to\ find\ the\ minimum\ residual\ capacity\ along\ the\ augmenting\ path}}
+\DoxyCodeLine{00083\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{EdmondsKarp_8h_a5d9eaea95963d260904788f49c789a07}{findMinResidualAlongPath}}(\mbox{\hyperlink{classVertex}{Vertex<T>}}\ *source,\ \mbox{\hyperlink{classVertex}{Vertex<T>}}\ *sink)\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{double}\ bottleneck\ =\ INF;}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<T>}}*\ cur\ =\ sink;}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{while}\ (cur\ !=\ source)}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEdge}{Edge<T>}}*\ e\ =\ cur-\/>\mbox{\hyperlink{classVertex_a15e4ff95fba2bb5970a6551137ceb950}{getPath}}();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}()\ ==\ cur)}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ bottleneck\ =\ std::min(bottleneck,\ e-\/>\mbox{\hyperlink{classEdge_a3df378e283d6c8be5be4170ac8d7f4e8}{getWeight}}()\ -\/\ e-\/>\mbox{\hyperlink{classEdge_a75458cfc838ca5aee5c34cb9f03b5647}{getFlow}}());}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ cur\ =\ e-\/>\mbox{\hyperlink{classEdge_a40fc1470c5339203defca19b67c2535b}{getOrig}}();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ bottleneck\ =\ std::min(bottleneck,\ e-\/>\mbox{\hyperlink{classEdge_a75458cfc838ca5aee5c34cb9f03b5647}{getFlow}}());}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ cur\ =\ e-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ minimum\ residual\ capacity}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ bottleneck;}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ Function\ to\ augment\ flow\ along\ the\ augmenting\ path\ with\ the\ given\ flow\ value}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00117\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{EdmondsKarp_8h_aa288e56d2c21ff1f83100ff9750fca98}{augmentFlowAlongPath}}(\mbox{\hyperlink{classVertex}{Vertex<T>}}\ *source,\ \mbox{\hyperlink{classVertex}{Vertex<T>}}\ *sink,\ \textcolor{keywordtype}{double}\ f)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<T>}}*\ cur\ =\ sink;}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{while}\ (cur\ !=\ source)}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEdge}{Edge<T>}}*\ e\ =\ cur-\/>\mbox{\hyperlink{classVertex_a15e4ff95fba2bb5970a6551137ceb950}{getPath}}();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}()\ ==\ cur)}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>\mbox{\hyperlink{classEdge_a1819116e2c156733a14bbd94cc27908e}{setFlow}}(e-\/>\mbox{\hyperlink{classEdge_a75458cfc838ca5aee5c34cb9f03b5647}{getFlow}}()\ +\ f);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ cur\ =\ e-\/>\mbox{\hyperlink{classEdge_a40fc1470c5339203defca19b67c2535b}{getOrig}}();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>\mbox{\hyperlink{classEdge_a1819116e2c156733a14bbd94cc27908e}{setFlow}}(e-\/>\mbox{\hyperlink{classEdge_a75458cfc838ca5aee5c34cb9f03b5647}{getFlow}}()\ -\/\ f);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ cur\ =\ e-\/>\mbox{\hyperlink{classEdge_a9a2de066dff8513dd788d553fc1d0c81}{getDest}}();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00144\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{EdmondsKarp_8h_a26c0c63edf291770ffa50c6587c48d05}{resetFlow}}(\mbox{\hyperlink{classGraph}{Graph<T>}}*\ g)}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classVertex}{Vertex<T>}}*\ v\ :\ g-\/>\mbox{\hyperlink{classGraph_a41624b03fcb6bd29e4df574a1ec58541}{getVertexSet}}())}
+\DoxyCodeLine{00147\ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classEdge}{Edge<T>}}*\ e\ :\ v-\/>getAdj())\ e-\/>setFlow(0);}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00161\ \textcolor{comment}{//\ Main\ function\ implementing\ the\ Edmonds-\/Karp\ algorithm}}
+\DoxyCodeLine{00162\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00163\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{EdmondsKarp_8h_aee845b901c5d07f1257924584430e6f4}{edmondsKarp}}(\mbox{\hyperlink{classGraph}{Graph<T>}}\ *g,\ \mbox{\hyperlink{structNodeInfo}{NodeInfo}}\ source,\ \mbox{\hyperlink{structNodeInfo}{NodeInfo}}\ target)\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<T>}}*\ s\ =\ g-\/>\mbox{\hyperlink{classGraph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(source);}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{classVertex}{Vertex<T>}}*\ t\ =\ g-\/>\mbox{\hyperlink{classGraph_a8b7b7465fbfd562e2a469f90a437ab75}{findVertex}}(target);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{EdmondsKarp_8h_a7ef59ca73ad539b2405ee93bb9e1b8de}{findAugmentingPath}}(g,\ s,\ t))}
+\DoxyCodeLine{00168\ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ bottleneck\ =\ \mbox{\hyperlink{EdmondsKarp_8h_a5d9eaea95963d260904788f49c789a07}{findMinResidualAlongPath}}(s,\ t);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \mbox{\hyperlink{EdmondsKarp_8h_aa288e56d2c21ff1f83100ff9750fca98}{augmentFlowAlongPath}}(s,\ t,\ bottleneck);}
+\DoxyCodeLine{00171\ \ \ \ \}}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT1\_EDMONDSKARP\_H}}
+
+\end{DoxyCode}
