@@ -37,7 +37,7 @@ void Parser::parse(const std::string& filename,
     std::ifstream file(filename);
     if (!file.is_open())
     {
-        std::cerr << "\nerror: could not open \"" << filename << "\"" << std::endl;
+        std::cerr << "\n  error: could not open \"" << filename << "\"" << std::endl;
         return;
     }
 
@@ -113,7 +113,7 @@ void Parser::parseSubmissions(const std::string& line,
     }
     catch (const std::exception& e)
     {
-        std::cerr << "error (submissions): could not parse line: "
+        std::cerr << "  error (submissions): could not parse line: "
                   << line << " (" << e.what() << ")" << std::endl;
         return;
     }
@@ -163,14 +163,14 @@ void Parser::parseReviewers(const std::string& line,
     }
     catch (const std::exception& e)
     {
-        std::cerr << "error (reviewers): could not parse line: "
+        std::cerr << "  error (reviewers): could not parse line: "
                   << line << " (" << e.what() << ")" << std::endl;
         return;
     }
 
     if (reviewers.count(rev.id))
     {
-        std::cerr << "error (reviewers): duplicate ID " << rev.id << std::endl;
+        std::cerr << "  error (reviewers): duplicate ID " << rev.id << std::endl;
         return;
     }
 
@@ -195,7 +195,7 @@ void Parser::parseParameters(const std::string& line, Parameters& parameters)
 
     if (fields.size() < 2)
     {
-        std::cerr << "error (parameters): malformed line: " << line << std::endl;
+        std::cerr << "  error (parameters): malformed line: " << line << std::endl;
         return;
     }
 
@@ -204,7 +204,7 @@ void Parser::parseParameters(const std::string& line, Parameters& parameters)
     try { value = std::stoi(fields[1]); }
     catch (const std::exception& e)
     {
-        std::cerr << "error (parameters): non-integer value for \""
+        std::cerr << "  error (parameters): non-integer value for \""
                   << name << "\": " << e.what() << std::endl;
         return;
     }
@@ -222,7 +222,7 @@ void Parser::parseParameters(const std::string& line, Parameters& parameters)
     if (paramMap.count(name))
         paramMap[name](value);
     else
-        std::cerr << "warning (parameters): unrecognised key \"" << name << "\"" << std::endl;
+        std::cerr << "  warning (parameters): unrecognised key \"" << name << "\"" << std::endl;
 }
 
 /**
@@ -243,7 +243,7 @@ void Parser::parseControl(const std::string& line, Control& control)
 
     if (fields.size() < 2)
     {
-        std::cerr << "error (control): malformed line: " << line << std::endl;
+        std::cerr << "  error (control): malformed line: " << line << std::endl;
         return;
     }
 
@@ -262,12 +262,12 @@ void Parser::parseControl(const std::string& line, Control& control)
         try { controlMap[name](value); }
         catch (const std::exception& e)
         {
-            std::cerr << "error (control): bad value for \""
+            std::cerr << "  error (control): bad value for \""
                       << name << "\": " << e.what() << std::endl;
         }
     }
     else
     {
-        std::cerr << "warning (control): unrecognised key \"" << name << "\"" << std::endl;
+        std::cerr << "  warning (control): unrecognised key \"" << name << "\"" << std::endl;
     }
 }

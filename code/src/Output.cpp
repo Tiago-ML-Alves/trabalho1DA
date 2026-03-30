@@ -21,7 +21,7 @@ void Output::write(const Scheduler& scheduler, const Control& control)
     std::ofstream file(control.outputFileName);
     if (!file.is_open())
     {
-        std::cerr << "error: could not open output file" << std::endl;
+        std::cerr << "  error: could not open output file" << std::endl;
         return;
     }
     if (control.generateAssignments != 0)
