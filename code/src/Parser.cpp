@@ -10,6 +10,7 @@
 #include <functional>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 #include <vector>
 
 // ---------------------------------------------------------------------------
@@ -34,10 +35,17 @@ void Parser::parse(const std::string& filename,
                    Parameters& parameters,
                    Control&    control)
 {
+    std::string ext = filename.substr(filename.size() - 4);
+    std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
     std::ifstream file(filename);
     if (!file.is_open())
     {
-        std::cerr << "\nerror: could not open \"" << filename << "\"" << std::endl;
+        std::cerr << "\n  error: could not open \"" << filename << "\"" << std::endl;
+        return;
+    }
+    if (ext != ".csv")
+    {
+        std::cerr << "  error: input file must have .csv extension" << std::endl;
         return;
     }
 

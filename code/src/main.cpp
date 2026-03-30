@@ -46,8 +46,8 @@ static void pauseExecution()
 {
     std::cout << "\n  Press Enter to continue...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    //std::cin.get();
 }
+
 
 // ─── display ─────────────────────────────────────────────────────────────────
 
@@ -228,7 +228,7 @@ static void runInteractive()
         case 1:
         {
             std::string file;
-            std::cout << "Input file name (Relative Path): ";
+            std::cout << "  Input file name (Relative Path): ";
             std::getline(std::cin, file);
             path = file;
 
@@ -320,11 +320,11 @@ static void runInteractive()
         }
 
         case 0:
-            std::cout << "Goodbye :)\n";
+            std::cout << "  Goodbye :)\n";
             break;
 
         default:
-            std::cout << "Invalid option.\n";
+            std::cout << "   Invalid option.\n";
             pauseExecution();
         }
     }
