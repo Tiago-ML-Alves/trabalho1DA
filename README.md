@@ -81,13 +81,13 @@ Launches a text menu with the following options:
 ### Linux
 If running from the build directory:
 ```bash
-./main -b ../code/data/input/dataset1.csv ../code/data/output1.csv
+./main -b ../code/data/input/dataset1.csv ../code/data/output/output1.csv
 
 #note that, in this case, relative paths must be specified in the format: ../code/path/to/directory
 ```
 If running from the root directory:
 ```bash
-./build/main -b code/data/input/dataset1.csv code/data/output1.csv
+./build/main -b code/data/input/dataset1.csv code/data/output/output1.csv
 
 #note that, in this case, relative paths must be specified in the format: code/path/to/directory
 ```
@@ -95,7 +95,7 @@ If running from the root directory:
 ### Windows
 If running from the Debug directory (located inside /build):
 ```bash
-./main.exe -b ../../code/data/input/dataset1.csv ../../code/data/output1.csv
+./main.exe -b ../../code/data/input/dataset1.csv ../../code/data/output/output1.csv
 
 #note that, in this case, relative paths must be specified in the format: ../code/intended/directory
 ```
