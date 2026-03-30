@@ -6,11 +6,13 @@ Group <GN> | TP <TN>
 ## - GENERAL CONSIDERATIONS -
 - All subtopics under section 4.2 are preoperly adressed and explained  in our PowerPoint presentation;
 - The "non-trivial input example stated under subsecton [T2.2] Basic Formulation with Risk Analysis = 1" is located in the input/ directory, named "datasettopic2-2.csv";
+- There is a non-trivial input file for topic [T2.3] Basic Formulation with Risk Analysis = K. However, as combinations of K risky reviewers aren't handled by our code,  running risk analysis won't output the desired result (in this case, it is only when we group reviewers into groups of K elements  and then remove them that the assignment fails).  
+- Whenever the user wants to access a file (option 1: Load InputFile, for example) or directory (option 5: Save Output), they must specify the relative path from the directory they are running the program from.  For example, if program is ran from inside the build directory, the path's structure should follow the format ../code/path/to/directory/ or ../code/path/to/file. If running from the root of the project, the path should follow the format code/path/to/directory/ or code/path/to/file.   
 ## Group Members
 
-- Duarte Pinto (up number)
-- João Maia (up number)
-- Tiago Alves (up number)
+- Duarte Pinto (up202404733)
+- João Maia (up202406371)
+- Tiago Alves (up202404912)
 
 ## Project Overview
 A tool to assign paper submissions to reviewers for a scientific
@@ -44,13 +46,13 @@ If running from the build directory:
 ```bash
 ./main
 
-#note that, in this case, relative paths must be specified in the format: ../code/intended/directory
+#note that, in this case, relative paths must be specified in the format: ../code/path/to/directory
 ```
 If running from the root directory:
 ```bash
 ./build/main
 
-#note that, in this case, relative paths must be specified in the format: code/intended/directory
+#note that, in this case, relative paths must be specified in the format: code/path/to/directory
 ```
 
 ### Windows 
